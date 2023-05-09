@@ -2,6 +2,12 @@
 module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
+    fontFamily: {
+      sans: ['Poppins', 'sans-serif'],
+    },
+    textColor: {
+      primary: '#fafafa',
+    },
     fontSize: {
       xs: '0.75rem',
       sm: '0.875rem',
