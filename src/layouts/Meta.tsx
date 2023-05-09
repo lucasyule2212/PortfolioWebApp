@@ -9,7 +9,6 @@ type IMetaProps = {
   description: string;
   canonical?: string;
 };
-
 const Meta = (props: IMetaProps) => {
   const router = useRouter();
 
@@ -38,5 +37,4 @@ const Meta = (props: IMetaProps) => {
     </>
   );
 };
-
-export { Meta };
+export default Meta;
