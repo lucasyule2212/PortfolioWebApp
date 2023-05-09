@@ -8,8 +8,15 @@ class MyDocument extends Document {
   render() {
     return (
       <Html lang={AppConfig.locale}>
-        <Head />
-        <body>
+        <Head>
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="use-credentials" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;800&display=swap"
+            rel="stylesheet"
+          />
+        </Head>
+        <body className="bg-zinc-800">
           <Main />
           <NextScript />
         </body>
