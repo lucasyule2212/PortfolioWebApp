@@ -1,17 +1,17 @@
 import React, { ReactNode } from 'react';
+import Meta from './Meta';
 
 // import { Container } from './styles';
 type IMainProps = {
   children: ReactNode;
-  meta: ReactNode;
 };
 
-const Main: React.FC<IMainProps> = ({ meta, children }: IMainProps) => {
+const Main: React.FC<IMainProps> = ({ children }: IMainProps) => {
   return (
-    <div>
-      {meta}
+    <main>
+      <Meta />
       {children}
-    </div>
+    </main>
   );
 };
 

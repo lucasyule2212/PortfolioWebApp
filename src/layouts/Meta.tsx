@@ -3,14 +3,21 @@ import { useRouter } from 'next/router';
 import { NextSeo } from 'next-seo';
 
 import { AppConfig } from '@/utils/AppConfig';
+import { useMemo } from 'react';
 
-type IMetaProps = {
-  title: string;
-  description: string;
-  canonical?: string;
-};
-const Meta = (props: IMetaProps) => {
+import clientRoutes from '@/utils/consts/clientRoutes';
+
+const Meta = () => {
   const router = useRouter();
+
+  const pageProps = useMemo(() => {
+    return (
+      clientRoutes[router.pathname] || {
+        title: '404',
+        description: '404',
+      }
+    );
+  }, [router.pathname]);
 
   return (
     <>
@@ -23,13 +30,11 @@ const Meta = (props: IMetaProps) => {
         <link rel="icon" href={`${router.basePath}/favicon.ico`} key="favicon" />
       </Head>
       <NextSeo
-        title={props.title}
-        description={props.description}
-        canonical={props.canonical}
+        title={pageProps.title}
+        description={pageProps.description}
         openGraph={{
-          title: props.title,
-          description: props.description,
-          url: props.canonical,
+          title: pageProps.title,
+          description: pageProps.description,
           locale: AppConfig.locale,
           site_name: AppConfig.site_name,
         }}
