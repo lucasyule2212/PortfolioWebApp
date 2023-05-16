@@ -21,7 +21,29 @@ module.exports = {
       '6xl': '4rem',
     },
     extend: {
+      backgroundColor: {
+        discord: {
+          blue: '#7289da',
+          'blue-hover': '#677bc4',
+          'blue-active': '#5b6eae',
+          'gray-1': '#424549',
+          'gray-2': '#36393e',
+          'gray-3': '#282b30',
+          'gray-4': '#1e2124',
+        },
+      },
       colors: {
+        discord: {
+          blue: '#7289da',
+          'blue-hover': '#677bc4',
+          'blue-active': '#5b6eae',
+          'gray-1': '#424549',
+          'gray-2': '#36393e',
+          'gray-3': '#282b30',
+          'gray-4': '#1e2124',
+          'green-1': '#37ff77',
+          'green-2': '#287e29',
+        },
         gray: {
           100: '#f7fafc',
           200: '#edf2f7',
