@@ -16,7 +16,7 @@ class MyDocument extends Document {
             rel="stylesheet"
           />
         </Head>
-        <body className="bg-discord-gray-4">
+        <body className="bg-discord-gray-6">
           <Main />
           <NextScript />
         </body>

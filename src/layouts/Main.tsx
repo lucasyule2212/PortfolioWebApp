@@ -8,7 +8,7 @@ type IMainProps = {
 
 const Main: React.FC<IMainProps> = ({ children }: IMainProps) => {
   return (
-    <main className="container flex h-screen pl-20">
+    <main className="container flex h-screen pl-18">
       <Meta />
       {children}
     </main>

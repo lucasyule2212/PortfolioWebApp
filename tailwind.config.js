@@ -21,6 +21,9 @@ module.exports = {
       '6xl': '4rem',
     },
     extend: {
+      padding: {
+        18: '4.5rem',
+      },
       backgroundColor: {
         discord: {
           blue: '#7289da',
@@ -28,8 +31,10 @@ module.exports = {
           'blue-active': '#5b6eae',
           'gray-1': '#424549',
           'gray-2': '#36393e',
-          'gray-3': '#282b30',
-          'gray-4': '#1e2124',
+          'gray-3': '#2c2f33',
+          'gray-4': '#282b30',
+          'gray-5': '#202225',
+          'gray-6': '#1e2124',
         },
       },
       colors: {
