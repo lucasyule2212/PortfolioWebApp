@@ -21,6 +21,9 @@ module.exports = {
       '6xl': '4rem',
     },
     extend: {
+      width: {
+        18: '4.7rem',
+      },
       padding: {
         18: '4.5rem',
       },
@@ -31,11 +34,14 @@ module.exports = {
           'blue-active': '#5b6eae',
           'gray-1': '#424549',
           'gray-2': '#36393e',
-          'gray-3': '#2c2f33',
-          'gray-4': '#282b30',
+          'gray-3': '#313338',
+          'gray-4': '#2b2d31',
           'gray-5': '#202225',
-          'gray-6': '#1e2124',
+          'gray-6': '#1e1f22',
         },
+      },
+      boxShadow: {
+        bottom: '0px 2px 1px 0px rgba(0,0,0,0.25)',
       },
       colors: {
         discord: {
@@ -44,8 +50,10 @@ module.exports = {
           'blue-active': '#5b6eae',
           'gray-1': '#424549',
           'gray-2': '#36393e',
-          'gray-3': '#282b30',
-          'gray-4': '#1e2124',
+          'gray-3': '#313338',
+          'gray-4': '#2b2d31',
+          'gray-5': '#202225',
+          'gray-6': '#1e1f22',
           'green-1': '#37ff77',
           'green-2': '#287e29',
         },
