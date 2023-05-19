@@ -6,7 +6,7 @@ import Footer from './Footer';
 
 const SidebarChanels: React.FC = () => {
   return (
-    <div className="flex flex-col w-60 bg-discord-gray-3 justify-between">
+    <div className="flex flex-col h-screen w-64 bg-discord-gray-4 justify-between">
       <Header />
       <Footer />
     </div>
