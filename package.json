@@ -18,6 +18,7 @@
     "postbuild": "next-sitemap"
   },
   "dependencies": {
+    "framer-motion": "^10.12.12",
     "next": "^13.0.6",
     "next-seo": "^6.0.0",
     "next-sitemap": "^4.0.9",
