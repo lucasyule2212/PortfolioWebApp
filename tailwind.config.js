@@ -29,9 +29,7 @@ module.exports = {
       },
       backgroundColor: {
         discord: {
-          blue: '#7289da',
-          'blue-hover': '#677bc4',
-          'blue-active': '#5b6eae',
+          blue: '#5865f2',
           'gray-1': '#424549',
           'gray-2': '#36393e',
           'gray-3': '#313338',
@@ -45,9 +43,7 @@ module.exports = {
       },
       colors: {
         discord: {
-          blue: '#7289da',
-          'blue-hover': '#677bc4',
-          'blue-active': '#5b6eae',
+          blue: '#5865f2',
           'gray-1': '#424549',
           'gray-2': '#36393e',
           'gray-3': '#313338',
