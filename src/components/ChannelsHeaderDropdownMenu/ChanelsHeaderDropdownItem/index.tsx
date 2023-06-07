@@ -1,20 +1,24 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { DropdownMenuItem } from '@/components/ui/dropdown-menu';
 import { cn } from '@/lib/utils';
 import { cva } from 'class-variance-authority';
 import React from 'react';
+import * as Icons from 'lucide-react';
 
 // import { Container } from './styles';
 
 type ChanelsHeaderDropdownItemProps = {
   variant?: 'default' | 'red' | 'blue';
   title: string;
-  icon: React.ReactNode;
+  icon: string;
+  iconIsFill?: boolean;
 };
 
 const ChanelsHeaderDropdownItem: React.FC<ChanelsHeaderDropdownItemProps> = ({
   variant = 'default',
   title,
   icon,
+  iconIsFill,
 }: ChanelsHeaderDropdownItemProps) => {
   const dropdownMenuItem = cva(
     'flex w-full rounded-sm text-sm font-thin text-gray-100 hover:bg-discord-medium-blue p-2 justify-between',
@@ -31,6 +35,9 @@ const ChanelsHeaderDropdownItem: React.FC<ChanelsHeaderDropdownItemProps> = ({
       },
     }
   );
+
+  // @ts-ignore
+  const Icon = Icons[icon];
   return (
     <DropdownMenuItem
       className={cn(
@@ -40,7 +47,7 @@ const ChanelsHeaderDropdownItem: React.FC<ChanelsHeaderDropdownItemProps> = ({
       )}
     >
       {title}
-      {icon}
+      <Icon className="w-4 h-4" fill={iconIsFill ? 'currentColor' : 'transparent'} />
     </DropdownMenuItem>
   );
 };
