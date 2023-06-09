@@ -16,7 +16,7 @@ module.exports = {
     fontWeight: {
       thin: 200,
       normal: 400,
-      semibold: 500,
+      semibold: 600,
       bold: 700,
     },
     fontSize: {
@@ -32,6 +32,9 @@ module.exports = {
       '6xl': '4rem',
     },
     extend: {
+      rotate: {
+        inverse90: '-90deg',
+      },
       textColor: {
         primary: '#fafafa',
       },
@@ -96,6 +99,7 @@ module.exports = {
           blue: '#5865f2',
           'medium-blue': '#4752c4',
           'light-blue': '#949cf7',
+          'gray-0': '#949ba4',
           'gray-1': '#424549',
           'gray-2': '#36393e',
           'gray-3': '#313338',
