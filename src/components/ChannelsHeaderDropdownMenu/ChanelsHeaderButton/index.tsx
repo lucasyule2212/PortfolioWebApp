@@ -26,7 +26,7 @@ const ChanelsHeaderButton: React.FC<ChanelsHeaderButtonProps> = ({ onOpenChange,
   px-4
   text-sm
   text-primary
-  font-weight-500
+  font-semibold
   focus:outline-none
   ${open ? 'bg-discord-gray-2' : ' bg-transparent'}   
   rounded-none
