@@ -1,5 +1,11 @@
+import MainChannelHeader from '@/components/MainChannelHeader';
+
 const Index = () => {
-  return <div>LALALALA</div>;
+  return (
+    <main>
+      <MainChannelHeader />
+    </main>
+  );
 };
 
 export default Index;

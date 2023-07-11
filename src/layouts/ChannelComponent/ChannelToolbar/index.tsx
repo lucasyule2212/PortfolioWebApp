@@ -4,7 +4,7 @@ import React from 'react';
 
 // import { Container } from './styles';
 
-const ChanelToolbar: React.FC = () => {
+const ChannelToolbar: React.FC = () => {
   return (
     <div className="flex h-12 shadow-bottom z-10 p-2 items-center justify-between">
       <ChannelToolbarTitle />
@@ -13,4 +13,4 @@ const ChanelToolbar: React.FC = () => {
   );
 };
 
-export default ChanelToolbar;
+export default ChannelToolbar;

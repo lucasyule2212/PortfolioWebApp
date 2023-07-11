@@ -1,6 +1,6 @@
 import React from 'react';
 import { MdInbox } from 'react-icons/md';
-import IconButton from './IconButton';
+import IconButton from '../IconButton';
 import { IoMdHelpCircle, IoMdNotifications } from 'react-icons/io';
 import { FaUserFriends } from 'react-icons/fa';
 import { AiFillPushpin } from 'react-icons/ai';

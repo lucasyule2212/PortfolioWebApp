@@ -3,7 +3,7 @@ import React from 'react';
 
 // import { Container } from './styles';
 
-const ChanelUsersSidebar: React.FC = () => {
+const ChannelUsersSidebar: React.FC = () => {
   return (
     <div className=" bg-discord-gray-4 pt-6 px-4 flex flex-col gap-1">
       <div className="flex items-center gap-2">
@@ -15,4 +15,4 @@ const ChanelUsersSidebar: React.FC = () => {
   );
 };
 
-export default ChanelUsersSidebar;
+export default ChannelUsersSidebar;

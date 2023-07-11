@@ -3,11 +3,12 @@ import { IconType } from 'react-icons/lib';
 
 // import { Container } from './styles';
 
-type IIconButtonProps = {
+interface IIconButtonProps {
   icon: IconType;
-};
+  size?: number;
+}
 
-const IconButton: React.FC<IIconButtonProps> = ({ icon: Icon }: IIconButtonProps) => {
+const IconButton: React.FC<IIconButtonProps> = ({ icon: Icon, size }: IIconButtonProps) => {
   const [isHover, setIsHover] = useState(false);
 
   return (
@@ -17,7 +18,7 @@ const IconButton: React.FC<IIconButtonProps> = ({ icon: Icon }: IIconButtonProps
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
       // onClick={() => {}}
-      size={25}
+      size={size || 25}
     />
   );
 };

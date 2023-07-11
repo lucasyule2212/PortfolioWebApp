@@ -1,4 +1,4 @@
-import { Input } from '@/components/ui/input';
+import { SearchInput as Input } from '@/components/ui/searchInput';
 import React from 'react';
 
 // import { Container } from './styles';

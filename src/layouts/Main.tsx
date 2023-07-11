@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import Meta from './Meta';
-import ChanelComponent from './ChanelComponent';
+import ChannelComponent from './ChannelComponent';
 import MainContainer from './MainContainer';
 import SidebarChanels from './SidebarChanels';
 import SidebarServers from './SidebarServers';
@@ -17,7 +17,7 @@ const MainLayout: React.FC<IMainProps> = ({ children }: IMainProps) => {
       <MainContainer>
         <SidebarServers />
         <SidebarChanels />
-        <ChanelComponent>{children}</ChanelComponent>
+        <ChannelComponent>{children}</ChannelComponent>
       </MainContainer>
     </main>
   );
