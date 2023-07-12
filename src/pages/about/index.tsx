@@ -1,4 +1,4 @@
-import MainChannelHeader from '@/components/MainChannelHeader';
+import ChannelHeader from '@/components/ChannelHeader';
 import React from 'react';
 
 // import { Container } from './styles';
@@ -6,7 +6,7 @@ import React from 'react';
 const inicio: React.FC = () => {
   return (
     <main>
-      <MainChannelHeader />
+      <ChannelHeader />
     </main>
   );
 };
