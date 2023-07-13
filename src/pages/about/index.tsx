@@ -3,7 +3,7 @@ import React from 'react';
 
 // import { Container } from './styles';
 
-const inicio: React.FC = () => {
+const About: React.FC = () => {
   return (
     <main>
       <ChannelHeader />
@@ -11,4 +11,4 @@ const inicio: React.FC = () => {
   );
 };
 
-export default inicio;
+export default About;

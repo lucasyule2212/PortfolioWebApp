@@ -3,9 +3,9 @@ import { useRouter } from 'next/router';
 import clientRoutes from '@/utils/consts/clientRoutes';
 import IconButton from '../IconButton';
 import { AiFillPlusCircle } from 'react-icons/ai';
-import { FaSmile } from 'react-icons/fa';
 import { Textarea } from '../ui/textarea';
 import styles from './styles.module.css';
+import EmojiPickerComponent from '../EmojiPicker';
 
 // import { Container } from './styles';
 
@@ -53,7 +53,7 @@ const MessageInput: React.FC = () => {
           />
         </div>
 
-        <IconButton icon={FaSmile} size={24} />
+        <EmojiPickerComponent />
       </div>
     </div>
   );

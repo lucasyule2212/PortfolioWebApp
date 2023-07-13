@@ -76,3 +76,14 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Emoji Picker Styles */
+em-emoji-picker {
+  --background-rgb: 85, 170, 255;
+  --border-radius: 12px;
+  --category-icon-size: 24px;
+  --font-size: 16px;
+  --rgb-accent:148, 156, 247;
+  --rgb-background: 32, 34, 37;
+  --shadow: 5px 5px 8px -8px black;
+}
