@@ -8,7 +8,7 @@ interface MessageAreaContainerProps {
 
 const MessageAreaContainer: React.FC<MessageAreaContainerProps> = ({ children }: MessageAreaContainerProps) => {
   return (
-    <div className={`flex relative h-fit flex-col overflow-y-auto ${styles['custom-scroll']} mx-1 my-1`}>
+    <div className={`flex relative w-full h-fit flex-col overflow-y-auto ${styles['custom-scroll']} mx-1 my-1`}>
       {children}
     </div>
   );
