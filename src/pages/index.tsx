@@ -1,10 +1,11 @@
 import MainChannelHeader from '@/components/MainChannelHeader';
+import MessageAreaContainer from '@/layouts/ChannelComponent/MessageAreaContainer';
 
 const Index = () => {
   return (
-    <main>
+    <MessageAreaContainer>
       <MainChannelHeader />
-    </main>
+    </MessageAreaContainer>
   );
 };
 
