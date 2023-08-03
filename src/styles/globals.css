@@ -86,6 +86,7 @@ em-emoji-picker {
   --rgb-accent: 148, 156, 247;
   --rgb-background: 32, 34, 37;
   --shadow: 5px 5px 8px -8px black;
+  z-index: 50;
 }
 
 /* tiptap styles */
