@@ -12,7 +12,13 @@ const Index = () => {
   return (
     <MessageAreaContainer>
       <MainChannelHeader />
-      <MessageComponent />
+      <MessageComponent
+        username="lyrma"
+        user_image_url=""
+        content="<p>
+      Testing component
+      </p>"
+      />
     </MessageAreaContainer>
   );
 };
