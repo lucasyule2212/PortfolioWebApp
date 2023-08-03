@@ -35,7 +35,7 @@ const EmojiPickerComponent: React.FC = () => {
     <>
       <motion.div
         data-active={isOpened}
-        className="hover:cursor-pointer hover:grayscale-0 grayscale data-[active=true]:grayscale-0"
+        className="hover:cursor-pointer hover:grayscale-0 grayscale data-[active=true]:grayscale-0 z-30"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onClick={() => setIsOpened(!isOpened)}
