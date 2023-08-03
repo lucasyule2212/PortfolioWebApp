@@ -39,7 +39,7 @@ const MainChannelHeader: React.FC = () => {
     <section className="relative flex flex-col w-full min-h-[150px] items-center justify-center gap-2 p-4">
       <div className="w-[90%] relative flex flex-col items-center justify-center gap-2 bg-discord-gray-5 p-4 rounded-lg border-discord-gray-2 border-2 shadow-md">
         {animationObj.View}
-        <h1 className="flex text-primary font-bold text-[2rem] items-center z-10 border-1 border-black">
+        <h1 className="flex text-primary font-bold text-[2rem] items-center  border-1 border-black">
           Seja bem vindo(a) ao meu Portfolio!
         </h1>
         <Image
