@@ -28,15 +28,20 @@ const MessageComponent: React.FC<MessageComponentProps> = ({ username, content }
     extensions: [StarterKit],
   });
 
-  const [isHover, setIsHover] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isHoverBlocked, setIsHoverBlocked] = useState(false);
 
   return (
     <div
       className="flex relative px-4 py-1 hover:bg-discord-gray-4 w-full"
-      onMouseEnter={() => setIsHover(true)}
-      onMouseLeave={() => setIsHover(false)}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(isHoverBlocked ? true : false)}
     >
-      {isHover ? <MessageActions /> : ''}
+      {isHovered ? (
+        <MessageActions setIsMessageHoverBlocked={setIsHoverBlocked} isMessageHoverBlocked={isHoverBlocked} />
+      ) : (
+        ''
+      )}
       <RoundedUserImage />
       <div className="flex flex-col ml-3">
         <div className="flex gap-2">
