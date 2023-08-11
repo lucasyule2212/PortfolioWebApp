@@ -1,6 +1,5 @@
 'use client';
-
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
 import clientRoutes from '@/utils/consts/clientRoutes';
 import IconButton from '../IconButton';
@@ -10,6 +9,8 @@ import EmojiPickerComponent from '../EmojiPicker';
 import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Placeholder from '@tiptap/extension-placeholder';
+import Emoji from '@tiptap-pro/extension-emoji';
+
 // import { Container } from './styles';
 
 const MessageInput: React.FC = () => {
@@ -38,11 +39,14 @@ const MessageInput: React.FC = () => {
         emptyEditorClass: 'is-editor-empty',
         placeholder: placeHolderWithChannel,
       }),
+      Emoji.configure({
+        enableEmoticons: true,
+      }),
     ],
     content: '',
     editorProps: {
       attributes: {
-        class: 'outline-none',
+        class: `outline-none`,
       },
     },
     onUpdate: ({ editor }) => {
@@ -58,6 +62,13 @@ const MessageInput: React.FC = () => {
     },
   });
 
+  const handleSelectEmojiEditor = useCallback(
+    (emoji: string) => {
+      markdownEditor?.chain().focus().setEmoji(emoji).run();
+    },
+    [markdownEditor]
+  );
+
   return (
     <div className="flex px-4 pb-6 z-10 relative">
       <div
@@ -69,7 +80,7 @@ const MessageInput: React.FC = () => {
           <div>
             <IconButton icon={AiFillPlusCircle} size={24} />
           </div>
-          <EmojiPickerComponent />
+          {markdownEditor && <EmojiPickerComponent onSelectEmojiEditor={handleSelectEmojiEditor} />}
         </div>
 
         <div

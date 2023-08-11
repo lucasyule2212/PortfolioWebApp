@@ -1,26 +1,29 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 'use client';
-
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import data from '@emoji-mart/data/sets/14/twitter.json';
 import Picker from '@emoji-mart/react';
 import { init } from 'emoji-mart';
 import { motion } from 'framer-motion';
-import React, { useCallback, useEffect, useState } from 'react';
-init({ data });
-// import { Container } from './styles';
+import React, { useCallback, useEffect, useState } from 'react'; // import { Container } from './styles';
 
-const EmojiPickerComponent: React.FC = () => {
+interface EmojiPickerProps {
+  onSelectEmojiEditor: (emoji: string) => void;
+}
+const EmojiPickerComponent: React.FC<EmojiPickerProps> = ({ onSelectEmojiEditor }: EmojiPickerProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isOpened, setIsOpened] = useState(false);
 
   const getRandomEmoji = useCallback(() => {
-    const emojis = data.categories[1]?.emojis.slice(0, 20) || [];
+    if (data) {
+      const emojis = data.categories[1]?.emojis.slice(0, 20) || [];
 
-    const randomIndex = Math.floor(Math.random() * emojis.length);
+      const randomIndex = Math.floor(Math.random() * emojis.length);
 
-    const emoji = emojis[randomIndex] || emojis[0];
+      const emoji = emojis[randomIndex] || emojis[0];
 
-    return emoji;
+      return emoji;
+    }
+    return 'grinning';
   }, []);
 
   const [randomEmoji, setRandomEmoji] = useState(getRandomEmoji());
@@ -30,6 +33,17 @@ const EmojiPickerComponent: React.FC = () => {
       setRandomEmoji(getRandomEmoji());
     }
   }, [isHovered, getRandomEmoji]);
+
+  useEffect(() => {
+    init({ data });
+  }, []);
+
+  const handleEmojiSelect = useCallback(
+    (emoji: { id: string }) => {
+      onSelectEmojiEditor(emoji.id);
+    },
+    [onSelectEmojiEditor]
+  );
 
   return (
     <>
@@ -42,12 +56,14 @@ const EmojiPickerComponent: React.FC = () => {
         transition={{ duration: 0.1, ease: 'easeInOut', bounce: 1 }}
         animate={{ scale: isHovered ? 1.1 : 1 }}
       >
-        {/* @ts-ignore */}
-        <em-emoji id={randomEmoji} size="1.8rem" set="twitter" />
+        <div>
+          {/* @ts-ignore */}
+          <em-emoji id={randomEmoji} size="1.8rem" set="twitter" />
+        </div>
       </motion.div>
       {isOpened && (
         <div className="absolute bottom-20 right-4">
-          <Picker data={data} onEmojiSelect={console.log} set="twitter" emojiButtonRadius="6px" />
+          <Picker data={data} onEmojiSelect={handleEmojiSelect} set="twitter" emojiButtonRadius="6px" />
         </div>
       )}
     </>
