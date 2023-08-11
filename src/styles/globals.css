@@ -97,3 +97,12 @@ em-emoji-picker {
   height: 0;
   pointer-events: none;
 }
+
+.ProseMirror code {
+  background-color: #232323;
+  border-radius: 0.25em;
+  box-decoration-break: clone;
+  color: #aaaaaa;
+  font-size: 0.9rem;
+  padding: 0.25em;
+}
