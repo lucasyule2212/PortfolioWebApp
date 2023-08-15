@@ -29,10 +29,10 @@ const EmojiPickerComponent: React.FC<EmojiPickerProps> = ({ onSelectEmojiEditor 
   const [randomEmoji, setRandomEmoji] = useState(getRandomEmoji());
 
   useEffect(() => {
-    if (isHovered) {
+    if (isHovered && !isOpened) {
       setRandomEmoji(getRandomEmoji());
     }
-  }, [isHovered, getRandomEmoji]);
+  }, [isHovered, getRandomEmoji, isOpened]);
 
   useEffect(() => {
     init({ data });
