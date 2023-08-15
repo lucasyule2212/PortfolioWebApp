@@ -5,17 +5,20 @@ import { init } from 'emoji-mart';
 import React, { useState } from 'react';
 import { MdAddReaction } from 'react-icons/md';
 import data from '@emoji-mart/data/sets/14/twitter.json';
+import { Emoji } from '@emoji-mart/data';
 init({ data });
 
 // import { Container } from './styles';
 interface MessageActionsProps {
   setIsMessageHoverBlocked: React.Dispatch<React.SetStateAction<boolean>>;
   isMessageHoverBlocked: boolean;
+  handleAddReaction: (emoji: Emoji) => void;
 }
 
 const MessageActions: React.FC<MessageActionsProps> = ({
   setIsMessageHoverBlocked,
   isMessageHoverBlocked,
+  handleAddReaction,
 }: MessageActionsProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isOpened, setIsOpened] = useState(false);
@@ -24,7 +27,7 @@ const MessageActions: React.FC<MessageActionsProps> = ({
     <>
       {isOpened && (
         <div className="absolute bottom-20 right-4">
-          <Picker data={data} onEmojiSelect={console.log} set="twitter" emojiButtonRadius="6px" />
+          <Picker data={data} onEmojiSelect={handleAddReaction} set="twitter" emojiButtonRadius="6px" />
         </div>
       )}
       <Button

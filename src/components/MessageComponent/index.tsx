@@ -1,10 +1,12 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 'use client';
-import React, { memo, useState } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 import RoundedUserImage from '../RoundedUserImage';
 import { format } from 'date-fns';
 import StarterKit from '@tiptap/starter-kit';
 import { EditorContent, useEditor } from '@tiptap/react';
 import MessageActions from './MessageActions';
+import { Emoji } from '@emoji-mart/data';
 
 // import { Container } from './styles';
 
@@ -30,6 +32,44 @@ const MessageComponent: React.FC<MessageComponentProps> = ({ username, content }
 
   const [isHovered, setIsHovered] = useState(false);
   const [isHoverBlocked, setIsHoverBlocked] = useState(false);
+  const [messageReactions, setMessageReactions] = useState<
+    {
+      emoji: string;
+      count: number;
+      reactedBy: string[];
+    }[]
+  >([]);
+  const reactionUser = 'me';
+
+  const handleAddReaction = useCallback(
+    (emoji: Emoji, isExistentReactionClick?: boolean) => {
+      // TODO: use custom hook to get logged user
+      const reactionIndex = messageReactions.findIndex(reaction => reaction.emoji === emoji.id);
+      if (reactionIndex === -1) {
+        setMessageReactions([...messageReactions, { emoji: emoji.id, count: 1, reactedBy: [reactionUser] }]);
+      } else {
+        const newReactions = [...messageReactions];
+        const reactionItem = newReactions[reactionIndex];
+        if (reactionItem) {
+          if (!reactionItem.reactedBy.includes(reactionUser)) {
+            reactionItem.count += 1;
+            reactionItem.reactedBy.push(reactionUser);
+            setMessageReactions(newReactions);
+          } else if (isExistentReactionClick) {
+            const newCount = reactionItem.count - 1;
+            if (newCount === 0) {
+              newReactions.splice(reactionIndex, 1);
+            } else {
+              reactionItem.count = newCount;
+              reactionItem.reactedBy = reactionItem.reactedBy.filter(user => user !== reactionUser);
+            }
+            setMessageReactions(newReactions);
+          }
+        }
+      }
+    },
+    [messageReactions]
+  );
 
   return (
     <div
@@ -38,7 +78,11 @@ const MessageComponent: React.FC<MessageComponentProps> = ({ username, content }
       onMouseLeave={() => setIsHovered(isHoverBlocked ? true : false)}
     >
       {isHovered ? (
-        <MessageActions setIsMessageHoverBlocked={setIsHoverBlocked} isMessageHoverBlocked={isHoverBlocked} />
+        <MessageActions
+          setIsMessageHoverBlocked={setIsHoverBlocked}
+          isMessageHoverBlocked={isHoverBlocked}
+          handleAddReaction={handleAddReaction}
+        />
       ) : (
         ''
       )}
@@ -49,6 +93,27 @@ const MessageComponent: React.FC<MessageComponentProps> = ({ username, content }
           <p className=" text-discord-gray-0 text-xs">{format(new Date(), 'dd/MM/yyyy HH:mm')}</p>
         </div>
         <EditorContent editor={editor} />
+        {messageReactions.length > 0 && (
+          <div className="flex gap-2">
+            {messageReactions.map(reaction => {
+              return (
+                <div
+                  className="flex gap-2 items-center border border-discord-gray-4 bg-discord-gray-3 
+                   rounded-md px-2 hover:cursor-pointer data-[isUserReacted]:border-blue-600
+                   data-[isUserReacted]:bg-blue-600 data-[isUserReacted]:bg-opacity-20
+                   "
+                  key={reaction.emoji}
+                  data-isUserReacted={reaction.reactedBy.includes(reactionUser)}
+                  onClick={() => handleAddReaction({ id: reaction.emoji } as Emoji, true)}
+                >
+                  {/* @ts-ignore */}
+                  <em-emoji id={reaction.emoji} size="1rem" set="twitter" />{' '}
+                  <p className="text-primary text-sm">{reaction.count}</p>
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );
