@@ -73,7 +73,8 @@ const MessageComponent: React.FC<MessageComponentProps> = ({ username, content }
 
   return (
     <div
-      className="flex relative px-4 py-1 hover:bg-discord-gray-4 w-full"
+      className="flex relative px-4 py-1 hover:bg-discord-gray-4 w-full data-[ishoverblocked=true]:bg-discord-gray-4"
+      data-ishoverblocked={isHoverBlocked}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(isHoverBlocked ? true : false)}
     >
