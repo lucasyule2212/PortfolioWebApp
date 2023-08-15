@@ -1,10 +1,11 @@
 'use client';
+import { useOutsideClick } from '@/hooks/useOutsideClick';
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import data from '@emoji-mart/data/sets/14/twitter.json';
 import Picker from '@emoji-mart/react';
 import { init } from 'emoji-mart';
 import { motion } from 'framer-motion';
-import React, { useCallback, useEffect, useState } from 'react'; // import { Container } from './styles';
+import React, { useCallback, useEffect, useRef, useState } from 'react'; // import { Container } from './styles';
 
 interface EmojiPickerProps {
   onSelectEmojiEditor: (emoji: string) => void;
@@ -44,10 +45,17 @@ const EmojiPickerComponent: React.FC<EmojiPickerProps> = ({ onSelectEmojiEditor 
     },
     [onSelectEmojiEditor]
   );
+  const pickerRef = useRef<HTMLDivElement | null>(null);
+
+  useOutsideClick(pickerRef, () => {
+    setIsOpened(false);
+    setIsHovered(false);
+  });
 
   return (
     <>
       <motion.div
+        ref={pickerRef}
         data-active={isOpened}
         className="hover:cursor-pointer hover:grayscale-0 grayscale data-[active=true]:grayscale-0 z-30"
         onMouseEnter={() => setIsHovered(true)}

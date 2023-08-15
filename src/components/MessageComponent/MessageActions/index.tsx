@@ -2,10 +2,11 @@
 import { Button } from '@/components/ui/button';
 import Picker from '@emoji-mart/react';
 import { init } from 'emoji-mart';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { MdAddReaction } from 'react-icons/md';
 import data from '@emoji-mart/data/sets/14/twitter.json';
 import { Emoji } from '@emoji-mart/data';
+import { useOutsideClick } from '@/hooks/useOutsideClick';
 init({ data });
 
 // import { Container } from './styles';
@@ -22,9 +23,16 @@ const MessageActions: React.FC<MessageActionsProps> = ({
 }: MessageActionsProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isOpened, setIsOpened] = useState(false);
+  const pickerRef = useRef<HTMLDivElement | null>(null);
+
+  useOutsideClick(pickerRef, () => {
+    setIsOpened(false);
+    setIsHovered(false);
+    setIsMessageHoverBlocked(false);
+  });
 
   return (
-    <>
+    <span ref={pickerRef}>
       {isOpened && (
         <div className="absolute bottom-20 right-4">
           <Picker data={data} onEmojiSelect={handleAddReaction} set="twitter" emojiButtonRadius="6px" />
@@ -50,7 +58,7 @@ const MessageActions: React.FC<MessageActionsProps> = ({
           size={25}
         />
       </Button>
-    </>
+    </span>
   );
 };
 
