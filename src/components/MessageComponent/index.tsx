@@ -103,7 +103,6 @@ const MessageComponent: React.FC<MessageComponentProps> = ({ username, content }
                   key={reaction.emoji}
                   emoji={reaction.emoji}
                   count={reaction.count}
-                  reactionUser={reactionUser}
                   reactedBy={reaction.reactedBy}
                   handleAddReaction={handleAddReaction}
                 />
