@@ -7,6 +7,7 @@ import StarterKit from '@tiptap/starter-kit';
 import { EditorContent, useEditor } from '@tiptap/react';
 import MessageActions from './MessageActions';
 import { Emoji } from '@emoji-mart/data';
+import MessageReaction from './MessageReaction';
 
 // import { Container } from './styles';
 
@@ -98,19 +99,14 @@ const MessageComponent: React.FC<MessageComponentProps> = ({ username, content }
           <div className="flex gap-2">
             {messageReactions.map(reaction => {
               return (
-                <div
-                  className="flex gap-2 items-center border border-discord-gray-4 bg-discord-gray-3 
-                   rounded-md px-2 hover:cursor-pointer data-[isUserReacted]:border-blue-600
-                   data-[isUserReacted]:bg-blue-600 data-[isUserReacted]:bg-opacity-20
-                   "
+                <MessageReaction
                   key={reaction.emoji}
-                  data-isUserReacted={reaction.reactedBy.includes(reactionUser)}
-                  onClick={() => handleAddReaction({ id: reaction.emoji } as Emoji, true)}
-                >
-                  {/* @ts-ignore */}
-                  <em-emoji id={reaction.emoji} size="1rem" set="twitter" />{' '}
-                  <p className="text-primary text-sm">{reaction.count}</p>
-                </div>
+                  emoji={reaction.emoji}
+                  count={reaction.count}
+                  reactionUser={reactionUser}
+                  reactedBy={reaction.reactedBy}
+                  handleAddReaction={handleAddReaction}
+                />
               );
             })}
           </div>
