@@ -9,7 +9,6 @@ interface MessageReactionProps {
   count: number;
   reactedBy: string[];
   handleAddReaction: (emoji: Emoji, isExistentReactionClick?: boolean) => void;
-  reactionUser: string;
 }
 
 const MessageReaction: React.FC<MessageReactionProps> = ({
@@ -17,18 +16,20 @@ const MessageReaction: React.FC<MessageReactionProps> = ({
   count,
   reactedBy,
   handleAddReaction,
-  reactionUser,
 }: MessageReactionProps) => {
   const othersReactedIsPositive = reactedBy.length > 3;
   return (
     <HoverCard>
       <HoverCardTrigger
         className="flex gap-2 items-center border border-discord-gray-4 bg-discord-gray-3 
-   rounded-md px-2 hover:cursor-pointer data-[isUserReacted]:border-blue-600
-   data-[isUserReacted]:bg-blue-600 data-[isUserReacted]:bg-opacity-20
+   rounded-md px-2 hover:cursor-pointer data-[isUserReacted=true]:border-blue-600
+   data-[isUserReacted=true]:bg-blue-600 data-[isUserReacted]:bg-opacity-20
    "
         key={emoji}
-        data-isUserReacted={reactedBy.includes(reactionUser)}
+        data-isUserReacted={reactedBy.includes(
+          // TODO: use custom hook to get logged user
+          'me'
+        )}
         onClick={() => handleAddReaction({ id: emoji } as Emoji, true)}
       >
         {/* @ts-ignore */}
@@ -40,8 +41,8 @@ const MessageReaction: React.FC<MessageReactionProps> = ({
         <em-emoji id={emoji} size="2.2rem" set="twitter" />
         <div className="flex gap-1">
           {/* return max 3 elements */}
-          {reactedBy.slice(0, 3).map(user => (
-            <p key={user}>{user}</p>
+          {reactedBy.slice(0, 3).map((user, index) => (
+            <p key={user}>{`${user}${index < 2 ? ',' : ''}`}</p>
           ))}{' '}
           {othersReactedIsPositive ? `  e outros ${reactedBy.length - 3}` : ''}
           {reactedBy.length > 1 ? 'reagiram ' : 'reagiu '}
