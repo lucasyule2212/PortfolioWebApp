@@ -6,9 +6,10 @@ import { IconType } from 'react-icons/lib';
 interface IIconButtonProps {
   icon: IconType;
   size?: number;
+  handleClick?: () => void;
 }
 
-const IconButton: React.FC<IIconButtonProps> = ({ icon: Icon, size }: IIconButtonProps) => {
+const IconButton: React.FC<IIconButtonProps> = ({ icon: Icon, size, handleClick }: IIconButtonProps) => {
   const [isHover, setIsHover] = useState(false);
 
   return (
@@ -17,7 +18,7 @@ const IconButton: React.FC<IIconButtonProps> = ({ icon: Icon, size }: IIconButto
       cursor={'pointer'}
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
-      // onClick={() => {}}
+      onClick={handleClick}
       size={size || 25}
     />
   );
