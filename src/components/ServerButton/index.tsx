@@ -4,12 +4,14 @@ import { motion } from 'framer-motion';
 // import { Container } from './styles';
 
 type ServerButtonProps = {
-  src: string;
+  src?: string;
+  text?: string;
+  bgColor?: string;
   alt: string;
   isTopHeader?: boolean;
 };
 
-const ServerButton: React.FC<ServerButtonProps> = ({ src, alt, isTopHeader }: ServerButtonProps) => {
+const ServerButton: React.FC<ServerButtonProps> = ({ src, text, alt, isTopHeader }: ServerButtonProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
 
@@ -57,18 +59,21 @@ const ServerButton: React.FC<ServerButtonProps> = ({ src, alt, isTopHeader }: Se
         onMouseLeave={() => setIsHovered(false)}
         onClick={() => setIsSelected(!isSelected)}
       >
-        <Image
-          className={`flex items-center justify-center w-12 h-12 rounded-full  bg-discord-gray-3 text-white transition-all duration-200 ${
-            isHovered ? 'rounded-2xl hover:bg-discord-blue' : ''
-          }`}
-          style={{
-            borderRadius: isHovered ? '1rem' : '100%',
-          }}
-          src={`/assets/images/${src}`}
-          alt={alt}
-          width={500}
-          height={500}
-        />
+        {src && (
+          <Image
+            className={`flex items-center justify-center w-12 h-12 rounded-full  bg-discord-gray-3 text-white transition-all duration-200 ${
+              isHovered ? 'rounded-2xl hover:bg-discord-blue' : ''
+            }`}
+            style={{
+              borderRadius: isHovered ? '1rem' : '100%',
+            }}
+            src={`/assets/images/${src}`}
+            alt={alt}
+            width={500}
+            height={500}
+          />
+        )}
+        {text && <p className="text-white font-semibold">{text}</p>}
       </button>
     </div>
   );

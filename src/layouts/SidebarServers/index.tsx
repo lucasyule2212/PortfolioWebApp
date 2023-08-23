@@ -9,7 +9,7 @@ const SidebarServers: React.FC = () => {
       <ServerButton src="yuleHeadSmile.png" alt="sticker yule smile" isTopHeader />
       {/* customized divider */}
       <div className="w-8 h-[2px] bg-discord-gray-3 rounded-md ml-2"></div>
-      <ServerButton src="logoYule.png" alt="logo yule" />
+      <ServerButton text="LY" alt="logo yule" />
     </div>
   );
 };
