@@ -39,7 +39,13 @@ const MessageComponent: React.FC<MessageComponentProps> = ({ username, content }
       count: number;
       reactedBy: string[];
     }[]
-  >([]);
+  >([
+    {
+      emoji: 'grinning',
+      count: 2,
+      reactedBy: ['lucas_yule', 'test'],
+    },
+  ]);
   const reactionUser = 'me';
 
   const handleAddReaction = useCallback(

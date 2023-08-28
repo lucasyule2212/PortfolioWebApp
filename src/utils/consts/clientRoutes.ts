@@ -11,6 +11,11 @@ const clientRoutes: {
   };
 } = {
   '/': {
+    title: 'Lucas Yule | Onboarding',
+    description: 'Portfolio Web Application of Lucas Yule built with Next.js and TypeScript',
+    titlePanel: 'Onboarding',
+  },
+  '/home': {
     title: 'Lucas Yule | Portfolio Web App',
     description: 'Portfolio Web Application of Lucas Yule built with Next.js and TypeScript',
     titlePanel: 'Início',
