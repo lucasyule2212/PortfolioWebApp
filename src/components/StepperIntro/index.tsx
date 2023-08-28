@@ -1,6 +1,7 @@
 import { useStepContext } from '@/contexts/StepperContext';
-import React from 'react';
+import React, { useMemo } from 'react';
 import { IconType } from 'react-icons';
+import { Button } from '../ui/button';
 
 interface StepProps {
   stepIndex: number;
@@ -85,6 +86,50 @@ const StepperHeader: React.FC<StepperProps> = ({ steps }) => {
     </ol>
   );
 };
+type StepperFooterProps = {
+  steps: {
+    icon: IconType;
+  }[];
+};
+
+const StepperFooter: React.FC<StepperFooterProps> = ({ steps }) => {
+  const { state, dispatch } = useStepContext();
+
+  const handleNextStep = () => {
+    dispatch({ type: 'NEXT_STEP' });
+  };
+
+  const handlePrevStep = () => {
+    dispatch({ type: 'PREV_STEP' });
+  };
+
+  const isFirstStep = useMemo(() => {
+    return state.currentStep === 0;
+  }, [state.currentStep]);
+
+  const isLastStep = useMemo(() => {
+    return state.currentStep === steps?.length - 1;
+  }, [state.currentStep, steps]);
+
+  return (
+    <div className="flex items-center justify-between w-full px-10 py-4">
+      {!isFirstStep && (
+        <Button variant="default-discord" onClick={handlePrevStep}>
+          Voltar
+        </Button>
+      )}
+      {isLastStep ? (
+        <Button variant="confirm" className="">
+          Finalizar
+        </Button>
+      ) : (
+        <Button variant="default-discord" className="ml-auto" onClick={handleNextStep}>
+          Próximo
+        </Button>
+      )}
+    </div>
+  );
+};
 
 const Stepper: React.FC<StepperProps> = ({ steps }) => {
   const { state } = useStepContext();
@@ -94,6 +139,7 @@ const Stepper: React.FC<StepperProps> = ({ steps }) => {
     <div className="flex flex-col items-center justify-center w-full h-full">
       <StepperHeader steps={steps} />
       <div className="flex flex-col items-center justify-center w-full h-full">{steps[currentStep]?.children}</div>
+      <StepperFooter steps={steps} />
     </div>
   );
 };
