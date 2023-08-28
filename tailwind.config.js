@@ -63,6 +63,7 @@ module.exports = {
       },
       boxShadow: {
         bottom: '0px 2px 1px 0px rgba(0,0,0,0.25)',
+        'neumorphism-dark': ' 5px 5px 5px #1c1e20, -5px -5px 5px #24262a',
       },
       colors: {
         border: 'hsl(var(--border))',
