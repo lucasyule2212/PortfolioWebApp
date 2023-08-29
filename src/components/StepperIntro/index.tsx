@@ -24,7 +24,11 @@ const Step: React.FC<StepProps> = ({ currentIndex, stepIndex, isActive, icon: Ic
        after:border-discord-gray-7
       data-[hasPast=true]:after:border-discord-green-1
       data-[hasNext=true]:after:border-4 
-      data-[hasNext=true]:after:inline-block"
+      data-[hasNext=true]:after:inline-block
+      after:transition-colors
+      after:duration-500
+      after:linear     
+      "
       data-active={isActive}
       data-hasPast={currentIndex > stepIndex}
       data-hasNext={hasNext}
