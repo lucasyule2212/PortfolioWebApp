@@ -9,9 +9,11 @@ import { StepProvider } from '@/contexts/StepperContext';
 import { Stepper } from '@/components/StepperIntro';
 import { FaFlagCheckered, FaLanguage, FaUserCircle } from 'react-icons/fa';
 import SelectLanguageChildren from '@/components/StepperIntro/SelectLanguageChildren';
+import { useGuestUser } from '@/store/GuestUser';
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
+  const { name, username, email, language, avatarUrl } = useGuestUser(state => state.guestUser);
 
   useEffect(() => {
     setTimeout(() => {
@@ -35,10 +37,12 @@ const Index = () => {
     {
       icon: FaLanguage,
       children: <SelectLanguageChildren />,
+      allowNext: language !== '',
     },
     {
       icon: FaUserCircle,
       children: <h1>Teste2</h1>,
+      allowNext: name !== '' && username !== '' && email !== '' && avatarUrl !== '',
     },
     {
       icon: FaFlagCheckered,

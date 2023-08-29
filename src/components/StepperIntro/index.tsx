@@ -93,6 +93,8 @@ const StepperHeader: React.FC<StepperProps> = ({ steps }) => {
 type StepperFooterProps = {
   steps: {
     icon: IconType;
+    children: React.ReactNode;
+    allowNext?: boolean;
   }[];
 };
 
@@ -127,7 +129,12 @@ const StepperFooter: React.FC<StepperFooterProps> = ({ steps }) => {
           Finalizar
         </Button>
       ) : (
-        <Button variant="default-discord" className="ml-auto" onClick={handleNextStep}>
+        <Button
+          variant="default-discord"
+          className="ml-auto"
+          onClick={handleNextStep}
+          disabled={!steps[state.currentStep]?.allowNext}
+        >
           Próximo
         </Button>
       )}
