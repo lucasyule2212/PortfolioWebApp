@@ -2,7 +2,7 @@
 
 import IntroContainer from '@/layouts/IntroContainer';
 import { useLottie } from 'lottie-react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import discordLoadingAnimationJson from '../../public/assets/animations/discordLoading.json';
 import { motion } from 'framer-motion';
 import { StepProvider } from '@/contexts/StepperContext';
@@ -34,22 +34,25 @@ const Index = () => {
       position: 'absolute',
     }
   );
-  const steps = [
-    {
-      icon: FaLanguage,
-      children: <SelectLanguageChildren />,
-      allowNext: language !== '',
-    },
-    {
-      icon: FaUserCircle,
-      children: <UserFormChildren />,
-      allowNext: name !== '' && username !== '' && email !== '' && avatarUrl !== '',
-    },
-    {
-      icon: FaFlagCheckered,
-      children: <h1>Teste3</h1>,
-    },
-  ];
+  const steps = useMemo(
+    () => [
+      {
+        icon: FaLanguage,
+        children: <SelectLanguageChildren />,
+        allowNext: language !== '',
+      },
+      {
+        icon: FaUserCircle,
+        children: <UserFormChildren />,
+        allowNext: name !== '' && username !== '' && email !== '' && avatarUrl !== '',
+      },
+      {
+        icon: FaFlagCheckered,
+        children: <h1>Teste3</h1>,
+      },
+    ],
+    [avatarUrl, email, language, name, username]
+  );
   return (
     <IntroContainer>
       {isLoading ? (
