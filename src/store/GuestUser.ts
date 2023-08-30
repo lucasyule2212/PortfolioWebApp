@@ -5,7 +5,6 @@ export type GuestUser = {
   name: string;
   username: string;
   email: string;
-  avatarUrl: string;
   language: string;
 };
 
@@ -14,7 +13,6 @@ interface GuestUserStore {
   setName: (name: string) => void;
   setUsername: (username: string) => void;
   setEmail: (email: string) => void;
-  setAvatarUrl: (avatarUrl: string) => void;
   setLanguage: (language: string) => void;
 }
 
@@ -24,7 +22,6 @@ export const useGuestUser = create(
       name: '',
       username: '',
       email: '',
-      avatarUrl: '',
       language: '',
     },
     setName: name => {
@@ -40,11 +37,6 @@ export const useGuestUser = create(
     setEmail: email => {
       set(state => {
         state.guestUser.email = email;
-      });
-    },
-    setAvatarUrl: avatarUrl => {
-      set(state => {
-        state.guestUser.avatarUrl = avatarUrl;
       });
     },
     setLanguage(language) {

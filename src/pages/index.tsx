@@ -14,7 +14,7 @@ import UserFormChildren from '@/components/StepperIntro/UserFormChildren';
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const { name, username, email, language, avatarUrl } = useGuestUser(state => state.guestUser);
+  const { name, username, email, language } = useGuestUser(state => state.guestUser);
 
   useEffect(() => {
     setTimeout(() => {
@@ -44,14 +44,14 @@ const Index = () => {
       {
         icon: FaUserCircle,
         children: <UserFormChildren />,
-        allowNext: name !== '' && username !== '' && email !== '' && avatarUrl !== '',
+        allowNext: name !== '' && username !== '' && email !== '',
       },
       {
         icon: FaFlagCheckered,
         children: <h1>Teste3</h1>,
       },
     ],
-    [avatarUrl, email, language, name, username]
+    [email, language, name, username]
   );
   return (
     <IntroContainer>
