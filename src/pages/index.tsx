@@ -10,6 +10,7 @@ import { Stepper } from '@/components/StepperIntro';
 import { FaFlagCheckered, FaLanguage, FaUserCircle } from 'react-icons/fa';
 import SelectLanguageChildren from '@/components/StepperIntro/SelectLanguageChildren';
 import { useGuestUser } from '@/store/GuestUser';
+import UserFormChildren from '@/components/StepperIntro/UserFormChildren';
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -41,7 +42,7 @@ const Index = () => {
     },
     {
       icon: FaUserCircle,
-      children: <h1>Teste2</h1>,
+      children: <UserFormChildren />,
       allowNext: name !== '' && username !== '' && email !== '' && avatarUrl !== '',
     },
     {
