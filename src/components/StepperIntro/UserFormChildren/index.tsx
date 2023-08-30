@@ -16,10 +16,16 @@ const UserFormChildren: React.FC = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors, dirtyFields, isValid },
   } = useForm({
     resolver: zodResolver(zodResolverSchema),
+    defaultValues: {
+      name: '',
+      username: '',
+      email: '',
+    },
   });
+
   const onSubmit = useCallback(
     (data: FieldValues) => {
       setEmail(data.email);
@@ -28,13 +34,12 @@ const UserFormChildren: React.FC = () => {
     },
     [setEmail, setName, setUsername]
   );
-
   useEffect(() => {
-    if (isValid) {
-      console.log('submitting form...');
-      handleSubmit(onSubmit);
+    const haveAllFields = dirtyFields.name && dirtyFields.username && dirtyFields.email;
+    if (haveAllFields || isValid) {
+      handleSubmit(onSubmit)();
     }
-  }, [handleSubmit, isValid, onSubmit]);
+  }, [dirtyFields.email, dirtyFields.name, dirtyFields.username, handleSubmit, isValid, onSubmit]);
 
   return (
     <form className="flex flex-col w-full h-full items-center justify-center gap-4">
@@ -46,13 +51,12 @@ const UserFormChildren: React.FC = () => {
           <Input type="text" className="bg-discord-gray-2 text-lg text-primary" {...register('name')} />
           {errors.name && <p className="text-red-500 text-xs">{errors.name?.message as string}</p>}
         </div>
-        <div className="bg-discord-gray-1 p-4 rounded-3xl shadow-lg">
+        <div className="bg-discord-gray-1 p-4 rounded-md shadow-lg">
           <div className="flex items-center justify-center w-24 h-24 bg-red-500 rounded-full">
             <span className="text-2xl text-discord-white">?</span>
           </div>
         </div>
       </div>
-
       <div className="flex flex-col w-[60%] justify-start gap-2">
         <h1 className="text-xl font-bold text-discord-gray-0 shadow-md border-b-2 border-b-discord-green-1 w-fit">
           Username
