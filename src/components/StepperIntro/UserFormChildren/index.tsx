@@ -4,7 +4,6 @@ import { FieldValues, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useGuestUser } from '@/store/GuestUser';
-import Avatar from 'boring-avatars';
 
 const zodResolverSchema = z.object({
   name: z.string().min(3).max(20),
@@ -49,44 +48,51 @@ const UserFormChildren: React.FC = () => {
   }, [email, handleSubmit, isValid, name, onSubmit, username]);
 
   return (
-    <form className="flex flex-col w-full h-full items-center justify-center gap-4">
-      <div className="flex  w-[60%] items-center gap-6">
-        <div className="flex flex-col  w-[70%] justify-start gap-2">
-          <h1 className="text-xl font-bold text-discord-gray-0 shadow-md border-b-2 border-b-discord-green-1 w-fit">
-            Nome
+    <form className="flex flex-col w-full h-full items-center">
+      <h1 className="text-3xl font-bold text-discord-gray-0 mb-2">Deixe-me te conhecer melhor!</h1>
+      <p className="text-xs font-semibold text-primary text-center mb-6">
+        Antes de começarmos, preciso saber algumas coisas sobre você. <br /> Não se preocupe, é rapidinho!
+      </p>
+      <div className="flex flex-col w-[50%] gap-4">
+        <div className=" flex-col justify-start gap-1">
+          <h1 className="text-sm font-semibold text-discord-gray-0 shadow-md w-fit">
+            NOME
+            <span className="text-red-500 ml-1">*</span>
           </h1>
-          <Input value={name} type="text" className="bg-discord-gray-2 text-lg text-primary" {...register('name')} />
+          <Input
+            value={name}
+            type="text"
+            className="bg-discord-gray-2 text-sm text-primary h-8 "
+            {...register('name')}
+          />
           {errors.name && <p className="text-red-500 text-xs">{errors.name?.message as string}</p>}
         </div>
-        <div className="bg-discord-gray-1 p-4 rounded-md shadow-lg">
-          <div className="flex items-center justify-center w-28 h-28 rounded-full">
-            <Avatar
-              variant="beam"
-              size="130px"
-              name={name !== '' ? name : 'Discord'}
-              colors={['#30182B', '#F0F1BC', '#60F0C0', '#FF360E', '#191F04']}
-            />
-          </div>
+        <div className="flex flex-col  justify-start gap-2">
+          <h1 className="text-sm font-semibold text-discord-gray-0 shadow-md w-fit">
+            USERNAME
+            <span className="text-red-500 ml-1">*</span>
+          </h1>
+          <Input
+            value={username}
+            type="text"
+            className="bg-discord-gray-2 text-primary h-8 text-sm"
+            {...register('username')}
+          />
+          {errors.username && <p className="text-red-500 text-xs">{errors.username?.message as string}</p>}
         </div>
-      </div>
-      <div className="flex flex-col w-[60%] justify-start gap-2">
-        <h1 className="text-xl font-bold text-discord-gray-0 shadow-md border-b-2 border-b-discord-green-1 w-fit">
-          Username
-        </h1>
-        <Input
-          value={username}
-          type="text"
-          className="bg-discord-gray-2 text-lg text-primary"
-          {...register('username')}
-        />
-        {errors.username && <p className="text-red-500 text-xs">{errors.username?.message as string}</p>}
-      </div>
-      <div className="flex flex-col w-[60%] justify-start gap-2">
-        <h1 className="text-xl font-bold text-discord-gray-0 shadow-md border-b-2 border-b-discord-green-1 w-fit">
-          E-mail
-        </h1>
-        <Input value={email} type="email" className="bg-discord-gray-2 text-lg text-primary" {...register('email')} />
-        {errors.email && <p className="text-red-500 text-xs">{errors.email?.message as string}</p>}
+        <div className="flex flex-col justify-start gap-2">
+          <h1 className="text-sm font-semibold text-discord-gray-0 shadow-md w-fit">
+            E-MAIL
+            <span className="text-red-500 ml-1">*</span>
+          </h1>
+          <Input
+            value={email}
+            type="email"
+            className="bg-discord-gray-2 text-primary h-8 text-sm"
+            {...register('email')}
+          />
+          {errors.email && <p className="text-red-500 text-xs">{errors.email?.message as string}</p>}
+        </div>
       </div>
     </form>
   );
