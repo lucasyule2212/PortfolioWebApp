@@ -2,6 +2,8 @@ import { useStepContext } from '@/contexts/StepperContext';
 import React, { useMemo } from 'react';
 import { IconType } from 'react-icons';
 import { Button } from '../ui/button';
+import { useRouter } from 'next/router';
+import { motion } from 'framer-motion';
 
 interface StepProps {
   stepIndex: number;
@@ -64,14 +66,14 @@ const Step: React.FC<StepProps> = ({ currentIndex, stepIndex, isActive, icon: Ic
   );
 };
 
-interface StepperProps {
+interface StepperHeaderProps {
   steps: {
     icon: IconType;
     children: React.ReactNode;
   }[];
 }
 
-const StepperHeader: React.FC<StepperProps> = ({ steps }) => {
+const StepperHeader: React.FC<StepperHeaderProps> = ({ steps }) => {
   const { state } = useStepContext();
   const { currentStep } = state;
 
@@ -96,9 +98,10 @@ type StepperFooterProps = {
     children: React.ReactNode;
     allowNext?: boolean;
   }[];
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const StepperFooter: React.FC<StepperFooterProps> = ({ steps }) => {
+const StepperFooter: React.FC<StepperFooterProps> = ({ steps, setIsLoading }) => {
   const { state, dispatch } = useStepContext();
 
   const handleNextStep = () => {
@@ -117,21 +120,31 @@ const StepperFooter: React.FC<StepperFooterProps> = ({ steps }) => {
     return state.currentStep === steps?.length - 1;
   }, [state.currentStep, steps]);
 
+  const router = useRouter();
+
+  const handleFinish = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+      router.push('/home');
+    }, 2000);
+  };
+
   return (
     <div className="flex items-center justify-between w-full px-10 py-4">
       {!isFirstStep && (
-        <Button variant="default-discord" onClick={handlePrevStep}>
+        <Button className="font-semibold" variant="default-discord" onClick={handlePrevStep}>
           Voltar
         </Button>
       )}
       {isLastStep ? (
-        <Button variant="confirm" className="">
+        <Button onClick={handleFinish} variant="confirm" className="font-semibold">
           Finalizar
         </Button>
       ) : (
         <Button
           variant="default-discord"
-          className="ml-auto"
+          className="ml-auto font-semibold"
           onClick={handleNextStep}
           disabled={!steps[state.currentStep]?.allowNext}
         >
@@ -142,15 +155,44 @@ const StepperFooter: React.FC<StepperFooterProps> = ({ steps }) => {
   );
 };
 
-const Stepper: React.FC<StepperProps> = ({ steps }) => {
+interface StepperProps {
+  steps: {
+    icon: IconType;
+    children: React.ReactNode;
+  }[];
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const Stepper: React.FC<StepperProps> = ({ steps, setIsLoading }) => {
   const { state } = useStepContext();
   const { currentStep } = state;
+
+  const slideVariants = {
+    'slide-enter': { transform: 'translateX(20%)' },
+    'slide-enter-active': { transform: 'translateX(0%)' },
+    'slide-exit': { transform: 'translateX(0%)' },
+    'slide-exit-active': { transform: 'translateX(-20%)' },
+  };
 
   return (
     <div className="flex flex-col items-center justify-center w-full h-full">
       <StepperHeader steps={steps} />
-      <div className="flex flex-col items-center justify-center w-full h-full">{steps[currentStep]?.children}</div>
-      <StepperFooter steps={steps} />
+      <motion.div
+        key={currentStep}
+        className="flex flex-col items-center justify-center w-full h-full"
+        initial={'slide-enter'}
+        animate={'slide-enter-active'}
+        exit={'slide-exit'}
+        transition={{
+          duration: 0.5,
+          ease: 'easeInOut',
+          type: 'tween',
+        }}
+        variants={slideVariants}
+      >
+        {steps[currentStep]?.children}
+      </motion.div>
+      <StepperFooter setIsLoading={setIsLoading} steps={steps} />
     </div>
   );
 };

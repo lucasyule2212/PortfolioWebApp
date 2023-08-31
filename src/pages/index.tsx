@@ -11,6 +11,7 @@ import { FaFlagCheckered, FaLanguage, FaUserCircle } from 'react-icons/fa';
 import SelectLanguageChildren from '@/components/StepperIntro/SelectLanguageChildren';
 import { useGuestUser } from '@/store/GuestUser';
 import UserFormChildren from '@/components/StepperIntro/UserFormChildren';
+import ReadyToGoChildren from '@/components/StepperIntro/ReadyToGoChildren';
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -48,7 +49,7 @@ const Index = () => {
       },
       {
         icon: FaFlagCheckered,
-        children: <h1>Teste3</h1>,
+        children: <ReadyToGoChildren />,
       },
     ],
     [email, language, name, username]
@@ -73,7 +74,7 @@ const Index = () => {
           }}
         >
           <StepProvider>
-            <Stepper steps={steps} />
+            <Stepper setIsLoading={setIsLoading} steps={steps} />
           </StepProvider>
         </motion.div>
       )}
