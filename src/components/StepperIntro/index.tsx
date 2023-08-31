@@ -124,10 +124,7 @@ const StepperFooter: React.FC<StepperFooterProps> = ({ steps, setIsLoading }) =>
 
   const handleFinish = () => {
     setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-      router.push('/home');
-    }, 2000);
+    router.push('/home');
   };
 
   return (

@@ -1,7 +1,7 @@
 'use client';
 
 import IntroContainer from '@/layouts/IntroContainer';
-import { useLottie } from 'lottie-react';
+import Lottie from 'lottie-react';
 import { useState, useEffect, useMemo } from 'react';
 import discordLoadingAnimationJson from '../../public/assets/animations/discordLoading.json';
 import { motion } from 'framer-motion';
@@ -20,21 +20,9 @@ const Index = () => {
   useEffect(() => {
     setTimeout(() => {
       setIsLoading(false);
-    }, 3000);
-  });
+    }, 2000);
+  }, []);
 
-  const animationObj = useLottie(
-    {
-      animationData: discordLoadingAnimationJson,
-      loop: true,
-      autoplay: true,
-    },
-    {
-      width: 150,
-      height: 150,
-      position: 'absolute',
-    }
-  );
   const steps = useMemo(
     () => [
       {
@@ -57,7 +45,13 @@ const Index = () => {
   return (
     <IntroContainer>
       {isLoading ? (
-        animationObj.View
+        <Lottie
+          animationData={discordLoadingAnimationJson}
+          style={{
+            width: 150,
+            height: 150,
+          }}
+        />
       ) : (
         <motion.div
           className="w-[50%] h-[70%] bg-discord-gray-5 rounded-3xl
