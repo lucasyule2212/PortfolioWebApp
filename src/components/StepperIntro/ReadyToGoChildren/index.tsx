@@ -21,12 +21,14 @@ const ReadyToGoChildren: React.FC = () => {
   );
   return (
     <div className="flex flex-col items-center  w-full h-full relative">
-      <div className=" rounded-full bg-discord-gray-4 border-2 border-discord-gray-7 shadow-lg shadow-discord-gray-7">
-        {animationObj.View}
-      </div>
-      <h1 className="absolute bottom-16 text-3xl font-semibold text-primary rounded-md px-4">
-        Tudo pronto para começar, #{guestUser.username}!
+      <h1 className="text-3xl font-semibold text-discord-gray-0 rounded-md px-4">
+        Tudo pronto para começar, <span className="text-discord-light-blue">#{guestUser.username}</span>!
       </h1>
+      <p className="text-sm font-semibold text-discord-gray-0 text-center mt-2">
+        Agora você já pode começar a navegar pelo app.
+      </p>
+      <p className="text-xl font-semibold text-discord-light-blue mt-2">Divirta-se!</p>
+      <div className=" rounded-full bg-discord-gray-4  mt-4">{animationObj.View}</div>
     </div>
   );
 };
