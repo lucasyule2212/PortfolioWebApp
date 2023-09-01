@@ -7,6 +7,7 @@ import {
   DialogContent,
   DialogDescription,
   DialogHeader,
+  DialogOverlay,
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog';
@@ -71,6 +72,7 @@ const GuestConfigDialog: React.FC = () => {
 
   return (
     <Dialog>
+      <DialogOverlay className="backdrop-blur-none bg-black/60" />
       <DialogTrigger className={`flex w-fit hover:bg-[#4e5058]/60  rounded-sm p-1`}>
         <BsGearFill size={18} className="text-discord-gray-0" />
       </DialogTrigger>
@@ -80,7 +82,7 @@ const GuestConfigDialog: React.FC = () => {
           <DialogDescription>
             <form className="flex flex-col w-[100%] gap-6" onSubmit={handleSubmit(onSubmit)}>
               <div className=" flex-col justify-start gap-1">
-                <h1 className="text-sm font-semibold text-discord-gray-7 shadow-md w-fit">
+                <h1 className="text-sm font-semibold text-discord-gray-0 shadow-md w-fit">
                   NOME
                   <span className="text-red-500 ml-1">*</span>
                 </h1>
@@ -93,7 +95,7 @@ const GuestConfigDialog: React.FC = () => {
                 {errors.name && <p className="text-red-500 text-xs">{errors.name?.message as string}</p>}
               </div>
               <div className="flex flex-col  justify-start gap-2">
-                <h1 className="text-sm font-semibold text-discord-gray-7 w-fit">
+                <h1 className="text-sm font-semibold text-discord-gray-0 w-fit">
                   USERNAME
                   <span className="text-red-500 ml-1">*</span>
                 </h1>
@@ -106,7 +108,7 @@ const GuestConfigDialog: React.FC = () => {
                 {errors.username && <p className="text-red-500 text-xs">{errors.username?.message as string}</p>}
               </div>
               <div className="flex flex-col justify-start gap-2">
-                <h1 className="text-sm font-semibold text-discord-gray-7 w-fit">
+                <h1 className="text-sm font-semibold text-discord-gray-0 w-fit">
                   E-MAIL
                   <span className="text-red-500 ml-1">*</span>
                 </h1>
