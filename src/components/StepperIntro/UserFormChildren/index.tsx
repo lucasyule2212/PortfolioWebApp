@@ -5,9 +5,30 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useGuestUser } from '@/store/GuestUser';
 
-const zodResolverSchema = z.object({
-  name: z.string().min(3).max(20),
-  username: z.string().min(3).max(20),
+export const guestUserResolverSchema = z.object({
+  name: z
+    .string()
+    .min(3)
+    .max(20)
+    .regex(/^[A-Za-z\sÀ-ÖØ-öø-ÿ]+$/u, {
+      message: 'Name should only contain letters, spaces, and accents/diacritics.',
+    })
+    .refine(name => name.trim().split(/\s+/).length === 2, {
+      message: 'Name should not contain consecutive spaces.',
+    }),
+  username: z
+    .string()
+    .min(3)
+    .max(20)
+    .regex(/^[a-zA-Z0-9]+$/, {
+      message: 'Username should only contain letters and numbers.',
+    })
+    .regex(/^\S*$/, {
+      message: 'Username should not contain spaces.',
+    })
+    .refine(username => !['admin', 'root'].includes(username.toLowerCase()), {
+      message: 'This username is reserved.',
+    }),
   email: z.string().email(),
 });
 
@@ -19,7 +40,7 @@ const UserFormChildren: React.FC = () => {
     formState: { errors, isValid },
     watch,
   } = useForm({
-    resolver: zodResolver(zodResolverSchema),
+    resolver: zodResolver(guestUserResolverSchema),
     defaultValues: {
       name: guestUser.name,
       username: guestUser.username,
