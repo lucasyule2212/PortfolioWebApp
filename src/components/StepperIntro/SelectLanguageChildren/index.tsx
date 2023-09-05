@@ -16,16 +16,16 @@ const SelectLanguageChildren: React.FC = () => {
     <div className="flex items-center justify-center w-full h-full gap-28">
       <LanguageCard
         flag={BrazilFlagAnimation}
-        language="PT-BR"
+        language="pt"
         handleClick={() => {
-          handleSelectLanguage('PT-BR');
+          handleSelectLanguage('pt');
         }}
       />
       <LanguageCard
         flag={UsaFlagAnimation}
-        language="EN-US"
+        language="en"
         handleClick={() => {
-          handleSelectLanguage('EN-US');
+          handleSelectLanguage('en');
         }}
       />
     </div>

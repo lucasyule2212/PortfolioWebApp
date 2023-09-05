@@ -4,6 +4,7 @@ import { IconType } from 'react-icons';
 import { Button } from '../ui/button';
 import { useRouter } from 'next/router';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 interface StepProps {
   stepIndex: number;
@@ -102,6 +103,7 @@ type StepperFooterProps = {
 };
 
 const StepperFooter: React.FC<StepperFooterProps> = ({ steps, setIsLoading }) => {
+  const { t } = useTranslation();
   const { state, dispatch } = useStepContext();
 
   const handleNextStep = () => {
@@ -131,12 +133,12 @@ const StepperFooter: React.FC<StepperFooterProps> = ({ steps, setIsLoading }) =>
     <div className="flex items-center justify-between w-full px-10 py-4">
       {!isFirstStep && (
         <Button className="font-semibold" variant="default-discord" onClick={handlePrevStep}>
-          Voltar
+          {t('button_back')}
         </Button>
       )}
       {isLastStep ? (
         <Button onClick={handleFinish} variant="confirm" className="font-semibold">
-          Finalizar
+          {t('button_finish')}
         </Button>
       ) : (
         <Button
@@ -145,7 +147,7 @@ const StepperFooter: React.FC<StepperFooterProps> = ({ steps, setIsLoading }) =>
           onClick={handleNextStep}
           disabled={!steps[state.currentStep]?.allowNext}
         >
-          Próximo
+          {t('button_next')}
         </Button>
       )}
     </div>

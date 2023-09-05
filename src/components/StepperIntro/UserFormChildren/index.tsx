@@ -4,6 +4,7 @@ import { FieldValues, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useGuestUser } from '@/store/GuestUser';
+import { useTranslation } from 'react-i18next';
 
 export const guestUserResolverSchema = z.object({
   name: z
@@ -33,6 +34,7 @@ export const guestUserResolverSchema = z.object({
 });
 
 const UserFormChildren: React.FC = () => {
+  const { t } = useTranslation();
   const { setEmail, setUsername, setName, guestUser } = useGuestUser();
   const {
     register,
@@ -70,14 +72,12 @@ const UserFormChildren: React.FC = () => {
 
   return (
     <form className="flex flex-col w-full h-full items-center">
-      <h1 className="text-3xl font-bold text-discord-gray-0 mb-2">Deixe-me te conhecer melhor!</h1>
-      <p className="text-xs font-semibold text-primary text-center mb-6">
-        Antes de começarmos, preciso saber algumas coisas sobre você. <br /> Não se preocupe, é rapidinho!
-      </p>
+      <h1 className="text-3xl font-bold text-discord-gray-0 mb-2">{t('greeting_1')}</h1>
+      <p className="text-xs font-semibold text-primary text-center mb-6">{t('greeting_subtitle_1')} </p>
       <div className="flex flex-col w-[50%] gap-4">
         <div className=" flex-col justify-start gap-1">
           <h1 className="text-sm font-semibold text-discord-gray-0 shadow-md w-fit">
-            NOME
+            {t('name').toUpperCase()}
             <span className="text-red-500 ml-1">*</span>
           </h1>
           <Input

@@ -1,0 +1,11 @@
+{
+  "name": "Nome",
+  "button_next": "Próximo",
+  "button_back": "Voltar",
+  "button_finish": "Finalizar",
+  "greeting_1": "Deixe-me te conhecer melhor!",
+  "greeting_subtitle_1": "Antes de começarmos, preciso saber algumas coisas sobre você. Não se preocupe, é rapidinho!",
+  "ready_greeting_1": "Tudo pronto para começar, ",
+  "ready_greeting_subtitle_1": "Agora você já pode começar a navegar pelo app.",
+  "ready_greeting_subtitle_2": "Divirta-se!"
+}
