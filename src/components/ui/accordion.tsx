@@ -42,7 +42,7 @@ const AccordionTrigger = React.forwardRef<
           )}
           strokeWidth={3}
         />
-        {children}
+        {children as any}
       </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
   );
