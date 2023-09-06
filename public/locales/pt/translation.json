@@ -19,6 +19,8 @@
   "channel_personal_projects": "projetos_pessoais",
   "channel_coding_config": "setup&configurações",
   "channel_title_home": "Início",
+  "channel_header_title_home": "Seja bem-vindo(a) ao meu Portfolio!",
+  "channel_header_subtitle_home": "Este é o início deste servidor.",
   "channel_title_about_me": "Sobre Mim",
   "channel_description_about_me": "Neste canal você pode conhecer um pouco mais sobre mim! 😄",
   "channel_title_tech_skills": "Habilidades Técnicas",
