@@ -4,6 +4,8 @@
   "button_back": "Back",
   "button_finish": "Finish",
   "button_save": "Save",
+  "button_cancel": "Cancel",
+  "button_confirm": "Confirm",
   "portuguese": "Change to Portuguese",
   "english": "Change to English",
   "greeting_1": "Let me know a little bit about you!",
@@ -31,5 +33,8 @@
   "channel_title_coding_config": "Setup & Configs",
   "channelUserSidebar_title": "AVAILABLE",
   "searchInput_placeholder": "Search",
-  "messageInput_placeholder": "Message to"
+  "messageInput_placeholder": "Message to",
+  "redirectConfirmationModal_title": "You will be redirected:",
+  "redirectConfirmationModal_subtitle": "On confirm you will be redirected to the following link:",
+  "redirectConfirmationModal_subtitle_2": "Do you want to continue?"
 }

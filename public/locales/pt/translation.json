@@ -4,6 +4,8 @@
   "button_back": "Voltar",
   "button_finish": "Finalizar",
   "button_save": "Salvar",
+  "button_cancel": "Cancelar",
+  "button_confirm": "Confirmar",
   "portuguese": "Mudar para Português",
   "english": "Mudar para Inglês",
   "greeting_1": "Deixe-me te conhecer melhor!",
@@ -31,5 +33,8 @@
   "channel_title_coding_config": "Setup & Configurações",
   "channelUserSidebar_title": "DISPONÍVEL",
   "searchInput_placeholder": "Buscar",
-  "messageInput_placeholder": "Conversar em"
+  "messageInput_placeholder": "Conversar em",
+  "redirectConfirmationModal_title": "Você será redirecionado:",
+  "redirectConfirmationModal_subtitle": "Ao confirmar, uma nova aba será aberta em:",
+  "redirectConfirmationModal_subtitle_2": "Deseja continuar?"
 }
