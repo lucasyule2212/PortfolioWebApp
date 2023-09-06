@@ -12,7 +12,7 @@ const ChannelGroupAccordion: React.FC<ChannelGroupAccordionProps> = ({
   title,
 }: ChannelGroupAccordionProps) => {
   return (
-    <Accordion type="multiple" className="mt-4">
+    <Accordion type="multiple" className="mt-4" defaultValue={['item-1']}>
       <AccordionItem value="item-1" className="">
         <AccordionTrigger className="text-xs text-discord-gray-0 font-semibold">{title}</AccordionTrigger>
         <AccordionContent className="flex flex-col justify-center gap-2  px-2">{children}</AccordionContent>

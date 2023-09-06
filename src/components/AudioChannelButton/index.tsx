@@ -16,7 +16,7 @@ const AudioChannelButton: React.FC<AudioChannelButtonProps> = ({ title }: AudioC
       onMouseLeave={() => setIsHovered(false)}
     >
       <Volume2 className="text-discord-gray-0  h-5 w-5" />
-      <span className={`${isHovered ? 'text-gray-400' : 'text-discord-gray-0'}`}>{title}</span>
+      <span className={`${isHovered ? 'text-gray-400' : 'text-discord-gray-0'} font-semibold`}>{title}</span>
     </Button>
   );
 };
