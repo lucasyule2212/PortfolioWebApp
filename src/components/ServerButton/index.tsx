@@ -9,11 +9,19 @@ type ServerButtonProps = {
   bgColor?: string;
   alt: string;
   isTopHeader?: boolean;
+  isSelected: boolean;
+  onSelect: () => void;
 };
 
-const ServerButton: React.FC<ServerButtonProps> = ({ src, text, alt, isTopHeader }: ServerButtonProps) => {
+const ServerButton: React.FC<ServerButtonProps> = ({
+  src,
+  text,
+  alt,
+  isTopHeader,
+  isSelected,
+  onSelect,
+}: ServerButtonProps) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [isSelected, setIsSelected] = useState(false);
 
   const variants = useMemo(
     () => ({
@@ -57,7 +65,7 @@ const ServerButton: React.FC<ServerButtonProps> = ({ src, text, alt, isTopHeader
         }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
-        onClick={() => setIsSelected(!isSelected)}
+        onClick={() => onSelect()}
       >
         {src && (
           <Image
