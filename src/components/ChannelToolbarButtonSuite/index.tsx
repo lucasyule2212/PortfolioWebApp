@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
-import { MdInbox } from 'react-icons/md';
 import IconButton from '../IconButton';
-import { IoMdHelpCircle } from 'react-icons/io';
-import { FaUserFriends } from 'react-icons/fa';
 import { AiFillLinkedin, AiFillGithub } from 'react-icons/ai';
 import { IoMail } from 'react-icons/io5';
 import SearchInput from './SearchInput';
 import RedirectConfirmationModal from '../RedirectConfirmationModal';
+import LanguageSwapButton from '../LanguageSwapButton';
 
 // import { Container } from './styles';
 
@@ -32,10 +30,9 @@ const ChannelToolbarButtonSuite: React.FC = () => {
         />
         <IconButton icon={AiFillGithub} handleClick={() => handleClickLinkButton('https://github.com/lucasyule2212')} />
         <IconButton icon={IoMail} handleClick={() => handleClickLinkButton('mailto:lucasyule6@gmail.com')} />
-        <IconButton icon={FaUserFriends} />
         <SearchInput />
-        <IconButton icon={MdInbox} />
-        <IconButton icon={IoMdHelpCircle} />
+        <LanguageSwapButton src="br-flag.png" alt="brazil flag" />
+        <LanguageSwapButton src="usa-flag.png" alt="united states flag" />
       </div>
     </>
   );
