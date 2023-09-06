@@ -43,7 +43,10 @@ const ChannelUserSidebarUserCard: React.FC<IChannelUserSidebarUserCardProps> = (
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <RoundedUserImage />
+      <div className="relative">
+        <RoundedUserImage isGuest={!isServerOwner} />
+        <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-600 rounded-full border-[2px] border-discord-gray-4"></div>
+      </div>
       <div className="flex items-center gap-1">
         <span className={`text-xs ${isHovered ? 'text-primary' : 'text-discord-gray-0'} font-semibold`}>{label}</span>
         {isServerOwner && <FaCrown className="text-yellow-500 text-xs" />}
