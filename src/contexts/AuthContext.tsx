@@ -1,8 +1,10 @@
-import { useGuestUser } from '@/store/GuestUser';
-import React, { createContext, useContext } from 'react';
+import { GuestUser, useGuestUser } from '@/store/GuestUser';
+import { useRouter } from 'next/router';
+import React, { createContext, useContext, useEffect } from 'react';
 
 interface AuthContextType {
   hasGuestUser: boolean;
+  setGuestUserToLocalStorage: (guestUser: GuestUser) => void;
 }
 
 type AuthProviderProps = {
@@ -12,10 +14,31 @@ type AuthProviderProps = {
 const AuthContext = createContext<AuthContextType | undefined>({} as AuthContextType);
 
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }: AuthProviderProps) => {
-  const { guestUser } = useGuestUser();
-  const hasGuestUser = guestUser.name !== '';
+  const { setGuestUser } = useGuestUser();
+  const [hasGuestUser, setHasGuestUser] = React.useState<boolean>(false);
+  const router = useRouter();
 
-  return <AuthContext.Provider value={{ hasGuestUser }}>{children}</AuthContext.Provider>;
+  const setGuestUserToLocalStorage = (guestUser: GuestUser) => {
+    localStorage.setItem('guestUser', JSON.stringify(guestUser));
+  };
+
+  useEffect(() => {
+    // get guest user from local storage
+    const guestUserFromLocalStorage = localStorage.getItem('guestUser');
+    if (guestUserFromLocalStorage) {
+      const parsedGuestUser = JSON.parse(guestUserFromLocalStorage);
+      if (parsedGuestUser) {
+        setGuestUser(parsedGuestUser);
+        setHasGuestUser(true);
+      }
+    } else {
+      setTimeout(() => {
+        router.push('/');
+      }, 2000);
+    }
+  }, [router, setGuestUser]);
+
+  return <AuthContext.Provider value={{ hasGuestUser, setGuestUserToLocalStorage }}>{children}</AuthContext.Provider>;
 };
 
 const useAuthContext = (): AuthContextType => {

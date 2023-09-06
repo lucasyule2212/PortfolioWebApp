@@ -10,6 +10,7 @@ export type GuestUser = {
 
 interface GuestUserStore {
   guestUser: GuestUser;
+  setGuestUser: (guestUser: GuestUser) => void;
   setName: (name: string) => void;
   setUsername: (username: string) => void;
   setEmail: (email: string) => void;
@@ -23,6 +24,11 @@ export const useGuestUser = create(
       username: '',
       email: '',
       language: '',
+    },
+    setGuestUser: guestUser => {
+      set(state => {
+        state.guestUser = guestUser;
+      });
     },
     setName: name => {
       set(state => {
