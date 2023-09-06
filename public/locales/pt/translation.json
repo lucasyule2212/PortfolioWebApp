@@ -10,5 +10,12 @@
   "ready_greeting_subtitle_1": "Agora você já pode começar a navegar pelo app.",
   "ready_greeting_subtitle_2": "Divirta-se!",
   "channelsFooter_online": "Disponível",
-  "guestConfigDialog_title": "Configurações de Usuário"
+  "guestConfigDialog_title": "Configurações de Usuário",
+  "sidebarChannels_textChannel1": "SESSÕES",
+  "channel_home": "início",
+  "channel_about_me": "sobre_mim",
+  "channel_tech_skills": "habilidades_técnicas",
+  "channel_professional_xp": "exp_profissional",
+  "channel_personal_projects": "projetos_pessoais",
+  "channel_coding_config": "setup&configurações"
 }

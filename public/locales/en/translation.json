@@ -11,5 +11,11 @@
   "ready_greeting_subtitle_2": "Have fun!",
   "channelsFooter_online": "Online",
   "guestConfigDialog_title": "User Configuration",
-  "": ""
+  "sidebarChannels_textChannel1": "SECTIONS",
+  "channel_home": "home",
+  "channel_about_me": "about_me",
+  "channel_tech_skills": "tech_skills",
+  "channel_professional_xp": "professional_exp",
+  "channel_personal_projects": "personal_projects",
+  "channel_coding_config": "setup&configs"
 }
