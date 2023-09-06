@@ -17,5 +17,12 @@
   "channel_tech_skills": "tech_skills",
   "channel_professional_xp": "professional_exp",
   "channel_personal_projects": "personal_projects",
-  "channel_coding_config": "setup&configs"
+  "channel_coding_config": "setup&configs",
+  "channel_title_home": "Home",
+  "channel_title_about_me": "About Me",
+  "channel_description_about_me": "In this channel you can know me a little better! 😄",
+  "channel_title_tech_skills": "Tech Skills",
+  "channel_title_professional_xp": "Professional Experience",
+  "channel_title_personal_projects": "Personal Projects",
+  "channel_title_coding_config": "Setup & Configs"
 }

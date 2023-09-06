@@ -1,16 +1,23 @@
 'use client';
-
 import React, { useMemo } from 'react';
 import DividerWithDate from '../DividerWithDate';
 import clientRoutes from '@/utils/consts/clientRoutes';
 import { useRouter } from 'next/router';
 import { BiHash } from 'react-icons/bi';
+import { useTranslation } from 'react-i18next';
 
 const ChannelHeader: React.FC = () => {
   const router = useRouter();
+  const { t } = useTranslation();
 
   const placeHolderWithChannel = useMemo(() => {
-    return clientRoutes[router.pathname];
+    return (
+      clientRoutes[router.pathname] || {
+        titlePanel: 'channel',
+        description: 'channelDescription',
+        icon: BiHash,
+      }
+    );
   }, [router.pathname]);
 
   const ChannelIcon = useMemo(() => {
@@ -27,9 +34,9 @@ const ChannelHeader: React.FC = () => {
         <ChannelIcon className="w-14 h-14 text-primary" />
       </div>
       <h1 className="flex text-primary font-semibold text-[1.8rem] items-center z-10 border-1 border-black">
-        #{placeHolderWithChannel?.titlePanel}!
+        #{t(placeHolderWithChannel.titlePanel)}!
       </h1>
-      <p className="text-sm text-discord-gray-0">{placeHolderWithChannel?.description}</p>
+      <p className="text-sm text-discord-gray-0">{t(placeHolderWithChannel.description)}</p>
       <DividerWithDate />
     </section>
   );

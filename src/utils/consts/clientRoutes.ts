@@ -6,7 +6,7 @@ const clientRoutes: {
   [key: string]: {
     title: string;
     description: string;
-    titlePanel?: string;
+    titlePanel: string;
     icon?: IconType;
   };
 } = {
@@ -18,12 +18,12 @@ const clientRoutes: {
   '/home': {
     title: 'Lucas Yule | Portfolio Web App',
     description: 'Portfolio Web Application of Lucas Yule built with Next.js and TypeScript',
-    titlePanel: 'Início',
+    titlePanel: 'channel_title_home',
   },
   '/about': {
     title: 'Sobre mim | Lucas Yule | Portfolio Web App ',
-    description: 'Neste canal você pode conhecer um pouco mais sobre mim! 😄',
-    titlePanel: 'Sobre mim',
+    description: 'channel_description_about_me',
+    titlePanel: 'channel_title_about_me',
     icon: FaUserCircle,
   },
 };
