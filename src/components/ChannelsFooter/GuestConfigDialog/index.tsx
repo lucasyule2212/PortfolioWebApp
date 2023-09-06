@@ -17,11 +17,13 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { motion, useAnimation } from 'framer-motion';
 import React, { useCallback, useEffect } from 'react';
 import { useForm, FieldValues } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { BsCheckLg, BsGearFill } from 'react-icons/bs';
 
 // import { Container } from './styles';
 
 const GuestConfigDialog: React.FC = () => {
+  const { t } = useTranslation();
   const { setEmail, setUsername, setName, guestUser } = useGuestUser();
   const controls = useAnimation();
 
@@ -78,12 +80,12 @@ const GuestConfigDialog: React.FC = () => {
       </DialogTrigger>
       <DialogContent className="bg-discord-gray-2 border border-discord-gray-5">
         <DialogHeader className="items-center gap-4">
-          <DialogTitle className="text-primary">CONFIGURAÇÕES DE USUÁRIO</DialogTitle>
+          <DialogTitle className="text-primary">{t('guestConfigDialog_title').toLocaleUpperCase()}</DialogTitle>
           <DialogDescription>
             <form className="flex flex-col w-[100%] gap-6" onSubmit={handleSubmit(onSubmit)}>
               <div className=" flex-col justify-start gap-1">
                 <h1 className="text-sm font-semibold text-discord-gray-0 shadow-md w-fit">
-                  NOME
+                  {t('name').toLocaleUpperCase()}
                   <span className="text-red-500 ml-1">*</span>
                 </h1>
                 <Input
@@ -121,7 +123,7 @@ const GuestConfigDialog: React.FC = () => {
                 {errors.email && <p className="text-red-500 text-xs">{errors.email?.message as string}</p>}
               </div>
               <Button variant="default-discord" type="submit" value="submit">
-                {!isSubmitting && !isSubmitSuccessful ? 'Salvar' : ''}
+                {!isSubmitting && !isSubmitSuccessful ? t('button_save') : ''}
                 {isSubmitting && !isSubmitSuccessful && <Spinner />}
                 {isSubmitSuccessful && (
                   <motion.div

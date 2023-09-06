@@ -2,10 +2,12 @@ import RoundedUserImage from '@/components/RoundedUserImage';
 import { useGuestUser } from '@/store/GuestUser';
 import { motion } from 'framer-motion';
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 // import { Container } from './styles';
 
 const GuestProfile: React.FC = () => {
+  const { t } = useTranslation();
   const [isHovered, setIsHovered] = useState(false);
   const { guestUser } = useGuestUser();
   const fastTransition = {
@@ -50,7 +52,7 @@ const GuestProfile: React.FC = () => {
           variants={slideTopVariants}
           transition={fastTransition}
         >
-          {isHovered ? '' : 'Disponível'}
+          {isHovered ? '' : t('channelsFooter_online')}
         </motion.span>
         {isHovered && (
           <motion.span
