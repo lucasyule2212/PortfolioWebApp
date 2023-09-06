@@ -5,6 +5,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { useGuestUser } from '@/store/GuestUser';
 import { useTranslation } from 'react-i18next';
+import { useAuthContext } from '@/contexts/AuthContext';
 
 export const guestUserResolverSchema = z.object({
   name: z
@@ -14,14 +15,14 @@ export const guestUserResolverSchema = z.object({
     .regex(/^[A-Za-z\sÀ-ÖØ-öø-ÿ]+$/u, {
       message: 'Name should only contain letters, spaces, and accents/diacritics.',
     })
-    .refine(name => name.trim().split(/\s+/).length === 2, {
+    .refine(name => name.trim().split(/\s+/).length === 1, {
       message: 'Name should not contain consecutive spaces.',
     }),
   username: z
     .string()
     .min(3)
     .max(20)
-    .regex(/^[a-zA-Z0-9]+$/, {
+    .regex(/^[a-zA-Z0-9_-]+$/, {
       message: 'Username should only contain letters and numbers.',
     })
     .regex(/^\S*$/, {
@@ -36,6 +37,7 @@ export const guestUserResolverSchema = z.object({
 const UserFormChildren: React.FC = () => {
   const { t } = useTranslation();
   const { setEmail, setUsername, setName, guestUser } = useGuestUser();
+  const { setGuestUserToLocalStorage } = useAuthContext();
   const {
     register,
     handleSubmit,
@@ -55,8 +57,9 @@ const UserFormChildren: React.FC = () => {
       setEmail(data.email);
       setUsername(data.username);
       setName(data.name);
+      setGuestUserToLocalStorage(guestUser);
     },
-    [setEmail, setName, setUsername]
+    [guestUser, setEmail, setGuestUserToLocalStorage, setName, setUsername]
   );
 
   const name = watch('name');
