@@ -29,5 +29,6 @@
   "channel_title_professional_xp": "Professional Experience",
   "channel_title_personal_projects": "Personal Projects",
   "channel_title_coding_config": "Setup & Configs",
-  "channelUserSidebar_title": "AVAILABLE"
+  "channelUserSidebar_title": "AVAILABLE",
+  "searchInput_placeholder": "Search"
 }
