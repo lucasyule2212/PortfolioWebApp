@@ -70,7 +70,7 @@ const MessageInput: React.FC = () => {
   );
 
   return (
-    <div className="flex px-4 pb-6 z-10 relative">
+    <div className="flex px-4 pb-6 relative">
       <div
         className={`relative flex w-full ${
           isRowsBiggerThanOne ? 'pt-3' : 'items-center'

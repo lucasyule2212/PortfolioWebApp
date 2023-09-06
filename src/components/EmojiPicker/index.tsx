@@ -57,7 +57,7 @@ const EmojiPickerComponent: React.FC<EmojiPickerProps> = ({ onSelectEmojiEditor 
       <motion.div
         ref={pickerRef}
         data-active={isOpened}
-        className="hover:cursor-pointer hover:grayscale-0 grayscale data-[active=true]:grayscale-0 z-30"
+        className="hover:cursor-pointer hover:grayscale-0 grayscale data-[active=true]:grayscale-0"
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
         onClick={() => setIsOpened(!isOpened)}
@@ -70,7 +70,7 @@ const EmojiPickerComponent: React.FC<EmojiPickerProps> = ({ onSelectEmojiEditor 
         </div>
       </motion.div>
       {isOpened && (
-        <div className="absolute bottom-20 right-4">
+        <div className="absolute bottom-20 right-4 z-10">
           <Picker data={data} onEmojiSelect={handleEmojiSelect} set="twitter" emojiButtonRadius="6px" />
         </div>
       )}
