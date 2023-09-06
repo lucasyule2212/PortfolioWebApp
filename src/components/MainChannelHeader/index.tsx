@@ -41,7 +41,7 @@ const MainChannelHeader: React.FC = () => {
     <section className="relative flex flex-col w-full min-h-[150px] items-center justify-center gap-2 p-4">
       <div className="w-[90%] relative flex flex-col items-center justify-center gap-2 bg-discord-gray-5 p-4 rounded-lg border-discord-gray-2 border-2 shadow-md">
         {animationObj.View}
-        <h1 className="flex text-primary font-bold text-[2rem] items-center z-20">{t('channel_header_title_home')}</h1>
+        <h1 className="flex text-primary font-bold text-[2rem] items-center z-[5]">{t('channel_header_title_home')}</h1>
         <Image
           alt="memoji confetti"
           src="/assets/images/memoji-confetti.webp"

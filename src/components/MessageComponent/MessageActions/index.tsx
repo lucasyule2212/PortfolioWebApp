@@ -34,7 +34,7 @@ const MessageActions: React.FC<MessageActionsProps> = ({
   return (
     <span ref={pickerRef}>
       {isOpened && (
-        <div className="absolute bottom-20 right-4">
+        <div className="absolute bottom-20 right-4 z-10">
           <Picker data={data} onEmojiSelect={handleAddReaction} set="twitter" emojiButtonRadius="6px" />
         </div>
       )}
