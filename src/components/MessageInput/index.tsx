@@ -10,21 +10,25 @@ import { useEditor, EditorContent } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Placeholder from '@tiptap/extension-placeholder';
 import Emoji from '@tiptap-pro/extension-emoji';
+import { useTranslation } from 'react-i18next';
 
 // import { Container } from './styles';
 
 const MessageInput: React.FC = () => {
   const router = useRouter();
+  const { t } = useTranslation();
 
   const placeHolderWithChannel = useMemo(() => {
-    const route = clientRoutes[router.pathname];
+    const route = clientRoutes[router.pathname] || {
+      titlePanel: '',
+    };
 
-    if (route?.titlePanel) {
-      return `Conversar em #${route.titlePanel}`;
+    if (route.titlePanel) {
+      return `${t('messageInput_placeholder')} #${t(route.titlePanel)}`;
     } else {
       return '';
     }
-  }, [router.pathname]);
+  }, [router.pathname, t]);
 
   const [rows, setRows] = useState(1);
 

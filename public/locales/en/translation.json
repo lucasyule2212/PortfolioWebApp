@@ -30,5 +30,6 @@
   "channel_title_personal_projects": "Personal Projects",
   "channel_title_coding_config": "Setup & Configs",
   "channelUserSidebar_title": "AVAILABLE",
-  "searchInput_placeholder": "Search"
+  "searchInput_placeholder": "Search",
+  "messageInput_placeholder": "Message to"
 }

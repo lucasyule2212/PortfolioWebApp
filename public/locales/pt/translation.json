@@ -30,5 +30,6 @@
   "channel_title_personal_projects": "Projetos Pessoais",
   "channel_title_coding_config": "Setup & Configurações",
   "channelUserSidebar_title": "DISPONÍVEL",
-  "searchInput_placeholder": "Buscar"
+  "searchInput_placeholder": "Buscar",
+  "messageInput_placeholder": "Conversar em"
 }
