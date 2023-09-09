@@ -1,5 +1,5 @@
 'use client';
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useRouter } from 'next/router';
 import clientRoutes from '@/utils/consts/clientRoutes';
 import IconButton from '../IconButton';
@@ -66,6 +66,20 @@ const MessageInput: React.FC = () => {
     },
   });
 
+  useEffect(() => {
+    if (markdownEditor !== null && placeHolderWithChannel !== '') {
+      const extensions = markdownEditor.extensionManager?.extensions;
+
+      if (extensions && extensions.length > 0) {
+        const placeholderExtension = extensions.find(extension => extension.name === 'placeholder');
+        if (placeholderExtension) {
+          placeholderExtension.options['placeholder'] = placeHolderWithChannel;
+          markdownEditor.view.dispatch(markdownEditor.state.tr);
+        }
+      }
+    }
+  }, [markdownEditor, placeHolderWithChannel]);
+
   const handleSelectEmojiEditor = useCallback(
     (emoji: string) => {
       markdownEditor?.chain().focus().setEmoji(emoji).run();
@@ -93,7 +107,6 @@ const MessageInput: React.FC = () => {
         >
           <EditorContent
             editor={markdownEditor}
-            placeholder="teste"
             className={`max-h-[40vh] flex flex-col overflow-y-auto ${styles['custom-scroll']} `}
           />
         </div>
