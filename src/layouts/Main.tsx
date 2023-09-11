@@ -1,5 +1,5 @@
 'use client';
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import Meta from './Meta';
 import ChannelComponent from './ChannelComponent';
 import MainContainer from './MainContainer';
@@ -9,6 +9,8 @@ import { useAuthContext } from '@/contexts/AuthContext';
 import { useLottie } from 'lottie-react';
 import discordLoadingAnimationJson from '../../public/assets/animations/discordLoading.json';
 import IntroContainer from './IntroContainer';
+import { useRouter } from 'next/router';
+import ChannelLoadingSkeleton from '@/components/ChannelLoadingSkeleton';
 // import { Container } from './styles';
 type IMainProps = {
   children: ReactNode;
@@ -16,6 +18,29 @@ type IMainProps = {
 
 const MainLayout: React.FC<IMainProps> = ({ children }: IMainProps) => {
   const { hasGuestUser } = useAuthContext();
+
+  const router = useRouter();
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const handleStart = () => {
+      setLoading(true);
+    };
+
+    const handleComplete = () => {
+      setLoading(false);
+    };
+
+    router.events.on('routeChangeStart', handleStart);
+    router.events.on('routeChangeComplete', handleComplete);
+    router.events.on('routeChangeError', handleComplete);
+
+    return () => {
+      router.events.off('routeChangeStart', handleStart);
+      router.events.off('routeChangeComplete', handleComplete);
+      router.events.off('routeChangeError', handleComplete);
+    };
+  }, [router]);
 
   const animationObj = useLottie(
     {
@@ -40,7 +65,7 @@ const MainLayout: React.FC<IMainProps> = ({ children }: IMainProps) => {
       <MainContainer>
         <SidebarServers />
         <SidebarChanels />
-        <ChannelComponent>{children}</ChannelComponent>
+        <ChannelComponent>{!hasGuestUser || loading ? <ChannelLoadingSkeleton /> : children}</ChannelComponent>
       </MainContainer>
     </main>
   );
