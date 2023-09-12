@@ -12,11 +12,8 @@ export const guestUserResolverSchema = z.object({
     .string()
     .min(3)
     .max(20)
-    .regex(/^[A-Za-z\sÀ-ÖØ-öø-ÿ]+$/u, {
+    .regex(/^[A-Za-zÀ-ÖØ-öø-ÿ]+(\s[A-Za-zÀ-ÖØ-öø-ÿ]+)*$/u, {
       message: 'Name should only contain letters, spaces, and accents/diacritics.',
-    })
-    .refine(name => name.trim().split(/\s+/).length === 1, {
-      message: 'Name should not contain consecutive spaces.',
     }),
   username: z
     .string()
