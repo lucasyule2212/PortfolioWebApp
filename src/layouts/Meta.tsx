@@ -6,14 +6,19 @@ import { AppConfig } from '@/utils/AppConfig';
 import { useMemo } from 'react';
 
 import clientRoutes from '@/utils/consts/clientRoutes';
+import { useTranslation } from 'react-i18next';
 
 const Meta = () => {
   const router = useRouter();
+  const { i18n } = useTranslation();
 
   const pageProps = useMemo(() => {
     return (
       clientRoutes[router.pathname] || {
-        title: '404',
+        title: {
+          pt: '404',
+          en: '404',
+        },
         description: '404',
       }
     );
@@ -30,10 +35,10 @@ const Meta = () => {
         <link rel="icon" href={`${router.basePath}/favicon.ico`} key="favicon" />
       </Head>
       <NextSeo
-        title={pageProps.title}
+        title={pageProps.title[i18n.language as 'pt' | 'en']}
         description={pageProps.description}
         openGraph={{
-          title: pageProps.title,
+          title: pageProps.title[i18n.language as 'pt' | 'en'],
           description: pageProps.description,
           locale: AppConfig.locale,
           site_name: AppConfig.site_name,
