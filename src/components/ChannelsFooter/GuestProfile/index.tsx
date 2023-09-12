@@ -32,7 +32,7 @@ const GuestProfile: React.FC = () => {
 
   return (
     <div
-      className={`flex w-[50%] hover:bg-[#4e5058]/60  rounded-sm py-1 hover:cursor-pointer`}
+      className={`flex w-fit min-w-[50%] hover:bg-[#4e5058]/60  rounded-sm py-1 hover:cursor-pointer`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => {
         setIsHovered(false);
@@ -43,8 +43,9 @@ const GuestProfile: React.FC = () => {
         <div className="absolute bottom-0 right-0 w-4 h-4 bg-green-600 rounded-full border-[3px] border-discord-gray-5"></div>
       </div>
       <div className="flex flex-col justify-center ml-2">
-        <span className="text-xs text-primary font-semibold">{guestUser.name}</span>
-
+        <span className="text-xs text-primary font-semibold whitespace-nowrap truncate w-[100px]">
+          {guestUser.name}
+        </span>
         <motion.span
           className="text-[0.7rem] text-discord-gray-0"
           initial="initial"
