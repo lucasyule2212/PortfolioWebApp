@@ -5,6 +5,7 @@ import { IoMail } from 'react-icons/io5';
 import SearchInput from './SearchInput';
 import RedirectConfirmationModal from '../RedirectConfirmationModal';
 import LanguageSwapButton from '../LanguageSwapButton';
+import DevTooltip from '../DevTooltip';
 
 // import { Container } from './styles';
 
@@ -30,7 +31,10 @@ const ChannelToolbarButtonSuite: React.FC = () => {
         />
         <IconButton icon={AiFillGithub} handleClick={() => handleClickLinkButton('https://github.com/lucasyule2212')} />
         <IconButton icon={IoMail} handleClick={() => handleClickLinkButton('mailto:lucasyule6@gmail.com')} />
-        <SearchInput />
+        {/* IN DEVELOPMENT TOOLTIP */}
+        <DevTooltip>
+          <SearchInput />
+        </DevTooltip>
         <LanguageSwapButton src="br-flag.png" alt="brazil flag" />
         <LanguageSwapButton src="usa-flag.png" alt="united states flag" />
       </div>

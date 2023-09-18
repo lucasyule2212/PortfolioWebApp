@@ -6,6 +6,7 @@ import TextChannelButton from '@/components/TextChannelButton';
 import AudioChannelButton from '@/components/AudioChannelButton';
 import { useTranslation } from 'react-i18next';
 import { useRouter } from 'next/router';
+import DevTooltip from '@/components/DevTooltip';
 
 // import { Container } from './styles';
 
@@ -33,7 +34,10 @@ const SidebarChanels: React.FC = () => {
           route={'/projects'}
         />
         <TextChannelButton title={t('channel_coding_config')} handleClick={handleChannelClick} route={'/setup'} />
-        <AudioChannelButton title="Lo-fi bot" />
+        {/* IN DEVELOPMENT TOOLTIP */}
+        <DevTooltip>
+          <AudioChannelButton title="Lo-fi bot" />
+        </DevTooltip>
       </ChannelGroupAccordion>
       <Footer />
     </div>

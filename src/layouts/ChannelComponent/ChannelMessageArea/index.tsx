@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import MessageInput from '@/components/MessageInput';
+import DevTooltip from '@/components/DevTooltip';
 
 // import { Container } from './styles';
 type ChannelMessageAreaProps = {
@@ -9,7 +10,10 @@ type ChannelMessageAreaProps = {
 const ChannelMessageArea: React.FC<ChannelMessageAreaProps> = ({ children }: ChannelMessageAreaProps) => {
   return (
     <div className={`flex flex-col-reverse col-span-4 relative`}>
-      <MessageInput />
+      {/* IN DEVELOPMENT TOOLTIP */}
+      <DevTooltip>
+        <MessageInput />
+      </DevTooltip>
       {children}
     </div>
   );
