@@ -1,6 +1,8 @@
 import { IconType } from 'react-icons/lib';
 // eslint-disable-next-line import/no-anonymous-default-export
-import { FaUserCircle } from 'react-icons/fa';
+import { FaReact, FaSuitcase, FaUserCircle } from 'react-icons/fa';
+import { BsFillGearFill } from 'react-icons/bs';
+import { GiTechnoHeart } from 'react-icons/gi';
 
 const clientRoutes: {
   [key: string]: {
@@ -37,6 +39,42 @@ const clientRoutes: {
     description: 'channel_description_about_me',
     titlePanel: 'channel_title_about_me',
     icon: FaUserCircle,
+  },
+  '/tech_skills': {
+    title: {
+      pt: 'Habilidades Técnicas | Lucas Yule | Portfolio Web App ',
+      en: 'Tech Skills | Lucas Yule | Portfolio Web App ',
+    },
+    description: 'channel_description_tech_skills',
+    titlePanel: 'channel_title_tech_skills',
+    icon: GiTechnoHeart,
+  },
+  '/professional_experience': {
+    title: {
+      pt: 'Experiência Profissional | Lucas Yule | Portfolio Web App ',
+      en: 'Professional Experience | Lucas Yule | Portfolio Web App ',
+    },
+    description: 'channel_description_professional_xp',
+    titlePanel: 'channel_title_professional_xp',
+    icon: FaSuitcase,
+  },
+  '/projects': {
+    title: {
+      pt: 'Projetos | Lucas Yule | Portfolio Web App ',
+      en: 'Projects | Lucas Yule | Portfolio Web App ',
+    },
+    description: 'channel_description_personal_projects',
+    titlePanel: 'channel_title_personal_projects',
+    icon: FaReact,
+  },
+  '/setup': {
+    title: {
+      pt: 'Setup | Lucas Yule | Portfolio Web App ',
+      en: 'Setup | Lucas Yule | Portfolio Web App ',
+    },
+    description: 'channel_description_coding_config',
+    titlePanel: 'channel_title_coding_config',
+    icon: BsFillGearFill,
   },
 };
 
