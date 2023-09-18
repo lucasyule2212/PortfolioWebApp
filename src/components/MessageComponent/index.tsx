@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 'use client';
-import React, { memo, useCallback, useState } from 'react';
+import React, { memo, useCallback, useMemo, useState } from 'react';
 import RoundedUserImage from '../RoundedUserImage';
 import { format } from 'date-fns';
 import StarterKit from '@tiptap/starter-kit';
@@ -8,6 +8,7 @@ import { EditorContent, useEditor } from '@tiptap/react';
 import MessageActions from './MessageActions';
 import { Emoji } from '@emoji-mart/data';
 import MessageReaction from './MessageReaction';
+import { useGuestUser } from '@/store/GuestUser';
 
 // import { Container } from './styles';
 
@@ -18,6 +19,7 @@ interface MessageComponentProps {
 }
 
 const MessageComponent: React.FC<MessageComponentProps> = ({ username, content }: MessageComponentProps) => {
+  const { guestUser } = useGuestUser();
   const editor = useEditor({
     editable: false,
     editorProps: {
@@ -42,15 +44,16 @@ const MessageComponent: React.FC<MessageComponentProps> = ({ username, content }
   >([
     {
       emoji: 'grinning',
-      count: 2,
-      reactedBy: ['lucas_yule', 'test'],
+      count: 3,
+      reactedBy: ['lucas_yule', 'test', 'test2'],
     },
   ]);
-  const reactionUser = 'me';
+  const reactionUser = useMemo(() => {
+    return guestUser?.username as string;
+  }, [guestUser?.username]);
 
   const handleAddReaction = useCallback(
     (emoji: Emoji, isExistentReactionClick?: boolean) => {
-      // TODO: use custom hook to get logged user
       const reactionIndex = messageReactions.findIndex(reaction => reaction.emoji === emoji.id);
       if (reactionIndex === -1) {
         setMessageReactions([...messageReactions, { emoji: emoji.id, count: 1, reactedBy: [reactionUser] }]);
@@ -75,7 +78,7 @@ const MessageComponent: React.FC<MessageComponentProps> = ({ username, content }
         }
       }
     },
-    [messageReactions]
+    [messageReactions, reactionUser]
   );
 
   return (

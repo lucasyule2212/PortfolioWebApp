@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
+import { useGuestUser } from '@/store/GuestUser';
 import { Emoji } from '@emoji-mart/data';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
@@ -19,6 +20,7 @@ const MessageReaction: React.FC<MessageReactionProps> = ({
   handleAddReaction,
 }: MessageReactionProps) => {
   const { t } = useTranslation();
+  const { guestUser } = useGuestUser();
   const othersReactedIsPositive = reactedBy.length > 3;
   return (
     <HoverCard>
@@ -28,10 +30,7 @@ const MessageReaction: React.FC<MessageReactionProps> = ({
    data-[isUserReacted=true]:bg-blue-600 data-[isUserReacted]:bg-opacity-20
    "
         key={emoji}
-        data-isUserReacted={reactedBy.includes(
-          // TODO: use custom hook to get logged user
-          'me'
-        )}
+        data-isUserReacted={reactedBy.includes(guestUser?.username as string)}
         onClick={() => handleAddReaction({ id: emoji } as Emoji, true)}
       >
         {/* @ts-ignore */}
