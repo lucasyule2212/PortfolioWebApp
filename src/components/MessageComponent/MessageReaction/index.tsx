@@ -2,6 +2,7 @@
 import { HoverCard, HoverCardContent, HoverCardTrigger } from '@/components/ui/hover-card';
 import { Emoji } from '@emoji-mart/data';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 // import { Container } from './styles';
 interface MessageReactionProps {
@@ -17,6 +18,7 @@ const MessageReaction: React.FC<MessageReactionProps> = ({
   reactedBy,
   handleAddReaction,
 }: MessageReactionProps) => {
+  const { t } = useTranslation();
   const othersReactedIsPositive = reactedBy.length > 3;
   return (
     <HoverCard>
@@ -45,8 +47,7 @@ const MessageReaction: React.FC<MessageReactionProps> = ({
             <p key={user}>{`${user}${index < 2 ? ',' : ''}`}</p>
           ))}{' '}
           {othersReactedIsPositive ? `  e outros ${reactedBy.length - 3}` : ''}
-          {reactedBy.length > 1 ? 'reagiram ' : 'reagiu '}
-          com :{emoji}:
+          {reactedBy.length > 1 ? t('react_with_2') : t('reacted_with')} :{emoji}:
         </div>
       </HoverCardContent>
     </HoverCard>
