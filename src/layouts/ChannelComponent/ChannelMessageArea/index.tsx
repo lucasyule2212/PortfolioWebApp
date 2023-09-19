@@ -9,7 +9,7 @@ type ChannelMessageAreaProps = {
 
 const ChannelMessageArea: React.FC<ChannelMessageAreaProps> = ({ children }: ChannelMessageAreaProps) => {
   return (
-    <div className={`flex flex-col-reverse col-span-4 relative`}>
+    <div className={`flex flex-col-reverse col-span-4 relative max-h-[94vh]`}>
       {/* IN DEVELOPMENT TOOLTIP */}
       <DevTooltip>
         <MessageInput />

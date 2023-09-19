@@ -103,11 +103,11 @@ const MessageInput: React.FC = () => {
 
         <div
           className={` bg-discord-gray-2 placeholder:text-zinc-500 pl-8 py-3 caret-discord-gray-0 text-zinc-300 
-          max-h-[50vh] w-[95%] ${styles['custom-scroll']}`}
+          max-h-[55vh] w-[95%] ${styles['custom-scroll']}`}
         >
           <EditorContent
             editor={markdownEditor}
-            className={`max-h-[40vh] flex flex-col overflow-y-auto ${styles['custom-scroll']} `}
+            className={`max-h-[50vh] flex flex-col overflow-y-auto ${styles['custom-scroll']} `}
           />
         </div>
       </div>
