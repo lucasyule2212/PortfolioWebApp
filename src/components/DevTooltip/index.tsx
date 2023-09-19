@@ -13,7 +13,7 @@ const DevTooltip: React.FC<DevTooltipProps> = ({ children }) => {
   return (
     <TooltipProvider>
       <Tooltip>
-        <TooltipTrigger>{children}</TooltipTrigger>
+        <TooltipTrigger className="text-start">{children}</TooltipTrigger>
         <TooltipContent className="flex items-center gap-2 bg-discord-gray-5 border border-discord-gray-7">
           <AiFillWarning className="fill-yellow-400" />
           <span className="text-xs text-discord-gray-0 font-semibold">{t('in_development')}!</span>
