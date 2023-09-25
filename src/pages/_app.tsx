@@ -6,6 +6,9 @@ import { useEffect } from 'react';
 import { appWithI18Next } from 'ni18n';
 import { ni18nConfig } from '../../ni18n.config';
 import { useTranslation } from 'react-i18next';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+export const queryClient = new QueryClient();
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const currentLanguage = useGuestUser(state => state.guestUser.language);
@@ -18,9 +21,11 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   }, [currentLanguage, i18n]);
 
   return (
-    <AuthProvider>
-      <Component {...pageProps} />
-    </AuthProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthProvider>
+        <Component {...pageProps} />
+      </AuthProvider>
+    </QueryClientProvider>
   );
 };
 
