@@ -9,6 +9,7 @@ import MessageActions from './MessageActions';
 import { Emoji } from '@emoji-mart/data';
 import MessageReaction from './MessageReaction';
 import { useGuestUser } from '@/store/GuestUser';
+import Link from '@tiptap/extension-link';
 
 // import { Container } from './styles';
 
@@ -16,22 +17,28 @@ interface MessageComponentProps {
   username: string;
   user_image_url?: string;
   content: string;
+  reactions: {
+    emoji: string;
+    count: number;
+    reactedBy: string[];
+  }[];
 }
 
-const MessageComponent: React.FC<MessageComponentProps> = ({ username, content }: MessageComponentProps) => {
+const MessageComponent: React.FC<MessageComponentProps> = ({ username, content, reactions }: MessageComponentProps) => {
   const { guestUser } = useGuestUser();
-  const editor = useEditor({
-    editable: false,
-    editorProps: {
-      attributes: {
-        class: 'outline-none text-primary text-sm',
+  const editor = useEditor(
+    {
+      extensions: [StarterKit, Link],
+      editable: false,
+      editorProps: {
+        attributes: {
+          class: 'prose prose-invert prose-sky outline-none text-primary text-sm',
+        },
       },
+      content: `${content}`,
     },
-    content: `
-    ${content}
-      `,
-    extensions: [StarterKit],
-  });
+    [content]
+  );
 
   const [isHovered, setIsHovered] = useState(false);
   const [isHoverBlocked, setIsHoverBlocked] = useState(false);
@@ -41,13 +48,7 @@ const MessageComponent: React.FC<MessageComponentProps> = ({ username, content }
       count: number;
       reactedBy: string[];
     }[]
-  >([
-    {
-      emoji: 'grinning',
-      count: 3,
-      reactedBy: ['lucas_yule', 'test', 'test2'],
-    },
-  ]);
+  >(reactions);
   const reactionUser = useMemo(() => {
     return guestUser?.username as string;
   }, [guestUser?.username]);
