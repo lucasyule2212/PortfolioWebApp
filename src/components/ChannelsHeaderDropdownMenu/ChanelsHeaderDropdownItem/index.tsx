@@ -12,6 +12,7 @@ type ChanelsHeaderDropdownItemProps = {
   title: string;
   icon: string;
   iconIsFill?: boolean;
+  onClick: () => void;
 };
 
 const ChanelsHeaderDropdownItem: React.FC<ChanelsHeaderDropdownItemProps> = ({
@@ -19,9 +20,10 @@ const ChanelsHeaderDropdownItem: React.FC<ChanelsHeaderDropdownItemProps> = ({
   title,
   icon,
   iconIsFill,
+  onClick,
 }: ChanelsHeaderDropdownItemProps) => {
   const dropdownMenuItem = cva(
-    'flex w-full rounded-sm text-sm font-thin text-gray-100 hover:bg-discord-medium-blue p-2 justify-between',
+    'flex w-full rounded-sm text-sm font-thin text-gray-100 hover:bg-discord-medium-blue hover:cursor-pointer p-2 justify-between',
     {
       variants: {
         variant: {
@@ -45,6 +47,7 @@ const ChanelsHeaderDropdownItem: React.FC<ChanelsHeaderDropdownItemProps> = ({
           variant,
         })
       )}
+      onClick={onClick}
     >
       {title}
       <Icon className="w-4 h-4" fill={iconIsFill ? 'currentColor' : 'transparent'} />

@@ -45,5 +45,8 @@
   "react_with_2": "reagiram com",
   "react_with_3": "e outros",
   "in_development": "Em Desenvolvimento",
-  "quick_access": "Acesso Rápido"
+  "quick_access": "Acesso Rápido",
+  "project_repository": "Repositório do Projeto",
+  "online_cv": "Currículo Online",
+  "logout": "Sair"
 }
