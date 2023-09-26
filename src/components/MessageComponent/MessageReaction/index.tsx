@@ -46,7 +46,7 @@ const MessageReaction: React.FC<MessageReactionProps> = ({
             <p key={user}>{`${user}${index < 2 ? ',' : ''}`}</p>
           ))}{' '}
           {othersReactedIsPositive ? `  ${t('react_with_3')} ${reactedBy.length - 3} ` : ''}
-          {reactedBy.length > 1 ? t('react_with_2') : t('reacted_with')} :{emoji}:
+          {reactedBy.length > 1 ? t('react_with_2') : t('react_with')} :{emoji}:
         </div>
       </HoverCardContent>
     </HoverCard>
