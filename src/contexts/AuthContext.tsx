@@ -5,6 +5,7 @@ import React, { createContext, useContext, useEffect } from 'react';
 interface AuthContextType {
   hasGuestUser: boolean;
   setGuestUserToLocalStorage: (guestUser: GuestUser) => void;
+  removeGuestUserFromLocalStorage: () => void;
 }
 
 type AuthProviderProps = {
@@ -20,6 +21,10 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }: AuthProviderPro
 
   const setGuestUserToLocalStorage = (guestUser: GuestUser) => {
     localStorage.setItem('guestUser', JSON.stringify(guestUser));
+  };
+
+  const removeGuestUserFromLocalStorage = () => {
+    localStorage.removeItem('guestUser');
   };
 
   useEffect(() => {
@@ -38,7 +43,11 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }: AuthProviderPro
     }
   }, [router, setGuestUser]);
 
-  return <AuthContext.Provider value={{ hasGuestUser, setGuestUserToLocalStorage }}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ hasGuestUser, setGuestUserToLocalStorage, removeGuestUserFromLocalStorage }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 const useAuthContext = (): AuthContextType => {
