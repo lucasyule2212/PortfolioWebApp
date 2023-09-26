@@ -15,6 +15,7 @@ interface GuestUserStore {
   setUsername: (username: string) => void;
   setEmail: (email: string) => void;
   setLanguage: (language: string) => void;
+  resetGuestUser: () => void;
 }
 
 export const useGuestUser = create(
@@ -48,6 +49,16 @@ export const useGuestUser = create(
     setLanguage(language) {
       set(state => {
         state.guestUser.language = language;
+      });
+    },
+    resetGuestUser: () => {
+      set(state => {
+        state.guestUser = {
+          name: '',
+          username: '',
+          email: '',
+          language: '',
+        };
       });
     },
   }))
