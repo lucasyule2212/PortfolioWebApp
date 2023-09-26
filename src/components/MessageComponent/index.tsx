@@ -37,7 +37,7 @@ const MessageComponent: React.FC<MessageComponentProps> = ({ username, content, 
       editable: false,
       editorProps: {
         attributes: {
-          class: 'prose prose-invert prose-sky outline-none text-primary text-sm',
+          class: 'w-full max-w-none prose prose-invert prose-sky outline-none text-primary text-sm',
         },
       },
       content: `${parsedContent}`,
@@ -89,7 +89,7 @@ const MessageComponent: React.FC<MessageComponentProps> = ({ username, content, 
 
   return (
     <div
-      className="flex relative px-4 py-1 hover:bg-discord-gray-4 w-full data-[ishoverblocked=true]:bg-discord-gray-4"
+      className="flex mt-2 relative px-4 py-1 hover:bg-discord-gray-4 w-full data-[ishoverblocked=true]:bg-discord-gray-4"
       data-ishoverblocked={isHoverBlocked}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(isHoverBlocked ? true : false)}
@@ -104,7 +104,7 @@ const MessageComponent: React.FC<MessageComponentProps> = ({ username, content, 
         ''
       )}
       <RoundedUserImage />
-      <div className="flex flex-col ml-3">
+      <div className="flex flex-col ml-3 w-full">
         <div className="flex gap-2">
           <p className="font-normal text-primary text-sm">{username}</p>
           <p className=" text-discord-gray-0 text-xs">{format(new Date(), 'dd/MM/yyyy HH:mm')}</p>
