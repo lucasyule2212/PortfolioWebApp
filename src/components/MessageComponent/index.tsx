@@ -26,6 +26,11 @@ interface MessageComponentProps {
 
 const MessageComponent: React.FC<MessageComponentProps> = ({ username, content, reactions }: MessageComponentProps) => {
   const { guestUser } = useGuestUser();
+
+  const parsedContent = useMemo(() => {
+    return content.replace('{user}', guestUser?.username as string);
+  }, [content, guestUser?.username]);
+
   const editor = useEditor(
     {
       extensions: [StarterKit, Link],
@@ -35,7 +40,7 @@ const MessageComponent: React.FC<MessageComponentProps> = ({ username, content, 
           class: 'prose prose-invert prose-sky outline-none text-primary text-sm',
         },
       },
-      content: `${content}`,
+      content: `${parsedContent}`,
     },
     [content]
   );
