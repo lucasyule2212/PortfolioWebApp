@@ -8,7 +8,7 @@ import { useTranslation } from 'react-i18next';
 
 const getPageData = () => {
   const query = `
-  query HomeQuery {
+  query AboutQuery {
     messages(where: {slug_contains: "about"}) {
       localizations(locales: [en, pt_BR], includeCurrent: true) {
         content {
