@@ -10,6 +10,7 @@ import { Emoji } from '@emoji-mart/data';
 import MessageReaction from './MessageReaction';
 import { useGuestUser } from '@/store/GuestUser';
 import Link from '@tiptap/extension-link';
+import Image from '@tiptap/extension-image';
 
 // import { Container } from './styles';
 
@@ -33,7 +34,7 @@ const MessageComponent: React.FC<MessageComponentProps> = ({ username, content, 
 
   const editor = useEditor(
     {
-      extensions: [StarterKit, Link],
+      extensions: [StarterKit, Link, Image],
       editable: false,
       editorProps: {
         attributes: {
