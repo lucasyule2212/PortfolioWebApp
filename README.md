@@ -82,6 +82,7 @@ Personal porfolio project, built in NextJS and deeply inspired in the [Discord](
 
 ## Roadmap
 
+- General performance improvements.
 - App global search.
 - Guest user can insert comment in the opened page.
 - App guided tour.
