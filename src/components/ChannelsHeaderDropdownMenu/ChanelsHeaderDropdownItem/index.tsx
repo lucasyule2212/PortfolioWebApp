@@ -23,7 +23,7 @@ const ChanelsHeaderDropdownItem: React.FC<ChanelsHeaderDropdownItemProps> = ({
   onClick,
 }: ChanelsHeaderDropdownItemProps) => {
   const dropdownMenuItem = cva(
-    'flex w-full rounded-sm text-sm font-thin text-gray-100 hover:bg-discord-medium-blue hover:cursor-pointer p-2 justify-between',
+    'flex w-full rounded-sm text-sm text-gray-100 hover:bg-discord-medium-blue hover:cursor-pointer p-2 justify-between',
     {
       variants: {
         variant: {
