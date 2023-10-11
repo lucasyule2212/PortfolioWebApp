@@ -18,9 +18,7 @@ const Index = () => {
   const { name, username, email, language } = useGuestUser(state => state.guestUser);
 
   useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
+    setIsLoading(false);
   }, []);
 
   const steps = useMemo(
@@ -63,7 +61,7 @@ const Index = () => {
             height: '70%',
           }}
           transition={{
-            duration: 0.5,
+            duration: 0.2,
             ease: 'easeInOut',
           }}
         >

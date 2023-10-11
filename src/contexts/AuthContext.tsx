@@ -37,9 +37,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }: AuthProviderPro
         setHasGuestUser(true);
       }
     } else {
-      setTimeout(() => {
-        router.push('/');
-      }, 2000);
+      router.push('/');
     }
   }, [router, setGuestUser]);
 
