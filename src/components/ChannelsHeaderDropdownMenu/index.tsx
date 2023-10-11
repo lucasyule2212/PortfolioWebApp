@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuSeparator } from '@/components/ui/dropdown-menu';
 import ChanelsHeaderButton from './ChanelsHeaderButton';
 import ChanelsHeaderMenuLabel from './ChanelsHeaderMenuLabel';
@@ -12,7 +12,7 @@ import { useTranslation } from 'react-i18next';
 // import { Container } from './styles';
 
 const ChannelsHeaderDropdownMenu: React.FC = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { resetGuestUser } = useGuestUser();
   const { removeGuestUserFromLocalStorage } = useAuthContext();
   const router = useRouter();
@@ -35,6 +35,12 @@ const ChannelsHeaderDropdownMenu: React.FC = () => {
     router.push('/');
   };
 
+  const cvLink = useMemo(() => {
+    return i18n.language === 'en'
+      ? 'https://docs.google.com/document/d/1k8BM6OwoknPLmY3k0HpendZfDVmFOJVngy8rXW4AL9U/edit?usp=sharing'
+      : 'https://docs.google.com/document/d/1-s1zxA1oXfmS9Bs-VvJjVHxnxLIr6nYjTdit_mXdt14/edit?usp=sharing';
+  }, [i18n.language]);
+
   return (
     <DropdownMenu open={isOpen} onOpenChange={handleOpenChange}>
       <ChanelsHeaderButton open={isOpen} onOpenChange={setIsOpen} />
@@ -50,11 +56,7 @@ const ChannelsHeaderDropdownMenu: React.FC = () => {
           variant="blue"
           title={t('online_cv')}
           icon="FileText"
-          onClick={() =>
-            handleOpenExternalLink(
-              'https://docs.google.com/document/d/1ML9PD-OpxToWkxm_z4pxIj7epQZvW5dy0Qg04bRaDso/edit?usp=sharing'
-            )
-          }
+          onClick={() => handleOpenExternalLink(cvLink)}
         />
         <DropdownMenuSeparator className="w-[100%] bg-discord-gray-4 h-[0.1px]" />
         <ChanelsHeaderDropdownItem variant="red" title={t('logout')} icon="LogOut" onClick={handleLogout} />
